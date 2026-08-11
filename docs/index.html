@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="喜乐会品牌视觉生产智能体：可复用的 Codex agent、品牌 skill、标准素材与质量审计。">
+    <meta name="theme-color" content="#4A1420">
+    <title>喜乐会品牌视觉生产智能体</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <header class="nav-shell">
+      <nav class="nav" aria-label="主导航">
+        <a class="brand" href="#top" aria-label="返回顶部">
+          <span class="brand-mark">喜</span>
+          <span>JoyBrand Agent</span>
+        </a>
+        <div class="nav-links">
+          <a href="#install">安装</a>
+          <a href="#workflow">工作流</a>
+          <a href="#governance">治理</a>
+          <a class="github-link" href="https://github.com/Catmint103/xilehui-brand-agent">GitHub ↗</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-copy">
+          <div class="eyebrow"><span></span> XMU ME Alumni · With ME·同行</div>
+          <h1>让每一张物料<br><em>同一品牌，不同表达</em></h1>
+          <p class="hero-lead">一个可直接交给 Codex 的喜乐会视觉生产工程：品牌规则是硬约束，创意路线保持开放，事实与发版权始终留在人手中。</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#install">一键安装 Skill</a>
+            <a class="button secondary" href="https://github.com/Catmint103/xilehui-brand-agent">查看源码</a>
+          </div>
+          <div class="hero-meta" aria-label="项目能力摘要">
+            <span><b>14</b> 锁定资产</span>
+            <span><b>6</b> 品牌色</span>
+            <span><b>2–4</b> 首轮方向</span>
+            <span><b>双重</b> 质量闸门</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="moon moon-large"></div>
+          <div class="moon moon-small"></div>
+          <div class="grid-card">
+            <span class="index">14</span>
+            <span class="label">XILEHUI<br>VISUAL SYSTEM</span>
+            <div class="rule"></div>
+            <span class="vertical">同 行</span>
+          </div>
+          <svg class="line-building" viewBox="0 0 600 240" role="img" aria-label="抽象建筑线稿装饰">
+            <path d="M30 206H570M85 206v-51h75v51M440 206v-51h75v51M195 206V96h210v110M225 96l75-58 75 58M250 206v-76h100v76M280 130V92h40v38M165 155l30-31M435 155l-30-31" />
+          </svg>
+        </div>
+      </section>
+
+      <section class="ticker" aria-label="品牌关键词">
+        <div>品牌一致性 <i>✦</i> 开放式审美 <i>✦</i> 标准资产 <i>✦</i> 信息防臆造 <i>✦</i> 人工发版权 <i>✦</i></div>
+      </section>
+
+      <section id="install" class="section install-section">
+        <div class="section-heading">
+          <span class="section-no">01</span>
+          <div><p class="kicker">Install once, create repeatedly</p><h2>两种方式，直接开工</h2></div>
+        </div>
+
+        <div class="install-grid">
+          <article class="install-card featured">
+            <div class="card-top"><span class="tag">推荐</span><span>完整智能体工程</span></div>
+            <h3>克隆后从仓库启动 Codex</h3>
+            <p>获得 AGENTS.md、品牌 skill、素材、示例、报告和自动检查。适合组员共同生产物料。</p>
+            <div class="code-block">
+              <code id="clone-command">git clone https://github.com/Catmint103/xilehui-brand-agent.git<br>cd xilehui-brand-agent<br>./install.sh<br>codex --cd .</code>
+              <button class="copy" data-copy="git clone https://github.com/Catmint103/xilehui-brand-agent.git&#10;cd xilehui-brand-agent&#10;./install.sh&#10;codex --cd ." aria-label="复制完整安装命令">复制</button>
+            </div>
+          </article>
+
+          <article class="install-card">
+            <div class="card-top"><span class="tag quiet">Skill only</span><span>已有自己的工作目录</span></div>
+            <h3>只安装品牌 Skill</h3>
+            <p>把 skill 安装进 <code>~/.codex/skills</code>，下一个 Codex 任务即可显式调用。</p>
+            <div class="code-block compact">
+              <code>curl -fsSL https://catmint103.github.io/<br>xilehui-brand-agent/install.sh | bash</code>
+              <button class="copy" data-copy="curl -fsSL https://catmint103.github.io/xilehui-brand-agent/install.sh | bash" aria-label="复制一键安装命令">复制</button>
+            </div>
+          </article>
+        </div>
+        <p class="install-note"><span>提示</span> 已安装旧版时运行 <code>./install.sh --force</code>。旧目录会先备份，不会静默删除。安装后请重新开始一个 Codex 任务。</p>
+      </section>
+
+      <section id="workflow" class="section workflow-section">
+        <div class="section-heading light">
+          <span class="section-no">02</span>
+          <div><p class="kicker">From brief to release</p><h2>不是提示词，是生产工作流</h2></div>
+        </div>
+        <div class="workflow-grid">
+          <article><span>01</span><h3>需求卡</h3><p>把输入拆成已锁定、可自主和待确认，阻止旧稿信息混入本届事实。</p></article>
+          <article><span>02</span><h3>创意路由</h3><p>根据物料选择静态画布、生图、算法艺术或 Figma 的最小组合。</p></article>
+          <article><span>03</span><h3>差异探索</h3><p>首轮提供 2–4 个真正不同的视觉命题，不把历史样例当固定模板。</p></article>
+          <article><span>04</span><h3>真实编排</h3><p>标准资产与真实文字进入母版，批量比例逐张重构而不是拉伸。</p></article>
+          <article><span>05</span><h3>双重验收</h3><p>资产哈希、配色审计负责机械预警；开放式审美与功能检查由人完成。</p></article>
+          <article><span>06</span><h3>发版留痕</h3><p>预览、高清、可编辑稿和审核记录成套交付，最终发布仍需组长批准。</p></article>
+        </div>
+      </section>
+
+      <section class="section system-section">
+        <div class="section-heading">
+          <span class="section-no">03</span>
+          <div><p class="kicker">A governed creative system</p><h2>固定身份，释放创意</h2></div>
+        </div>
+        <div class="system-grid">
+          <div class="palette-panel">
+            <div class="swatch burgundy"><span>#4A1420</span></div>
+            <div class="swatch wine"><span>#7A2E3D</span></div>
+            <div class="swatch gold"><span>#A9976A</span></div>
+            <div class="swatch blue"><span>#4F6272</span></div>
+            <div class="swatch beige"><span>#E7E0D3</span></div>
+            <div class="swatch charcoal"><span>#2E2A26</span></div>
+          </div>
+          <div class="system-copy">
+            <div class="principle"><span>LOCKED</span><h3>品牌硬约束</h3><p>六色色板、厦大标准资产、活动事实、真实文字与二维码规范。</p></div>
+            <div class="principle"><span>OPEN</span><h3>开放创作项</h3><p>构图、字体、材质、图文关系、空间、摄影、算法与媒介路线。</p></div>
+            <div class="principle"><span>HUMAN</span><h3>人工决策权</h3><p>传播目标、文化语境、最终审美判断、业务事实和对外发布。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="governance" class="section governance-section">
+        <div class="governance-copy">
+          <p class="kicker">Safety by design</p>
+          <h2>会创作，也知道<br>哪些事不能猜</h2>
+          <p>地点、票价、报名截止时间和正式二维码没有确认时，智能体会继续制作带明确占位的审核稿，但绝不从历史案例自动继承。</p>
+          <a href="https://github.com/Catmint103/xilehui-brand-agent/blob/main/ASSET-LICENSE.md">查看素材许可边界 →</a>
+        </div>
+        <ul class="guardrails">
+          <li><span>01</span><div><b>不生成官方身份</b><p>模型不重画校徽、厦大建筑、组合标志、二维码或最终文字。</p></div></li>
+          <li><span>02</span><div><b>不冒充业务确认</b><p>没有证据时不声称已发布、已扫码成功或已获主办方确认。</p></div></li>
+          <li><span>03</span><div><b>不让审计替代审美</b><p>配色与哈希是预警工具，构图张力、文化语境和完成度仍由人判断。</p></div></li>
+          <li><span>04</span><div><b>不公开内部数据</b><p>inputs 与 outputs 默认不进 Git，防止名单、二维码和未发布物料泄露。</p></div></li>
+        </ul>
+      </section>
+
+      <section class="section prompt-section">
+        <div class="prompt-card">
+          <span class="prompt-label">STARTER PROMPT</span>
+          <blockquote>“请先整理需求卡和规格矩阵，再给 3 个视觉命题。地点、价格和二维码尚未确认，不要从旧稿推断。”</blockquote>
+          <button class="button prompt-copy" data-copy="请使用 $create-xilehui-brand-poster 为本届喜乐会建立系列物料计划。先整理需求卡和规格矩阵，再给 3 个差异明显的视觉命题。地点、价格和二维码尚未确认，不要从旧稿推断。">复制开箱提示词</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand"><span class="brand-mark">喜</span><div><b>喜乐会品牌视觉生产智能体</b><small>Built for repeatable, governed creativity.</small></div></div>
+      <div class="footer-links"><a href="https://github.com/Catmint103/xilehui-brand-agent">GitHub</a><a href="https://github.com/Catmint103/xilehui-brand-agent/blob/main/README.md">文档</a><a href="https://github.com/Catmint103/xilehui-brand-agent/blob/main/LICENSE">许可</a></div>
+    </footer>
+
+    <div class="toast" role="status" aria-live="polite">已复制</div>
+    <script src="app.js"></script>
+  </body>
+</html>

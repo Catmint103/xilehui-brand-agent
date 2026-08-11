@@ -1,0 +1,4 @@
+interface:
+  display_name: "喜乐会品牌海报生成"
+  short_description: "在固定品牌配色和厦大官方元素下自由探索高级喜乐会视觉设计"
+  default_prompt: "使用 $create-xilehui-brand-poster 在保持品牌配色和厦大官方元素准确的前提下，自由探索一版高级活动海报。"

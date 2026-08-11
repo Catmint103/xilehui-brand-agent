@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "sources": {
+    "furong-pptx": "7bf7e1a09b19343ba664b83b75ffacf64cb3ba3ba7c74d06196de7477998b939",
+    "chao-pptx": "13c38ec3c664b4e6c339a834ca867cb69af467f938888ac3263b0a49f12a2d59",
+    "main-visual-pdf": "28d1678632380ddc4d965329f1e157f361d27bea9a3f5600369107b05b58ddf7"
+  },
+  "files": {
+    "architecture/xmu-01-statue-front.png": {"sha256": "9ad2af99099ba3ebcbecb9bc2726edb89df999f841766a05f56aa2869ec7b989", "width": 1773, "height": 2364, "mode": "RGB"},
+    "architecture/xmu-02-phoenix-corner.png": {"sha256": "239978b357cf77014445220dde1796a4b3ae8b54024c5cb13a3ea41e69ba021c", "width": 1536, "height": 2730, "mode": "RGB"},
+    "architecture/xmu-03-pitched-roof-hall.png": {"sha256": "ac463ec5479c27a37528254b67ac42dcbac3eba9879f950fc78947a504c6f3cd", "width": 2730, "height": 1535, "mode": "RGB"},
+    "architecture/xmu-04-tower-front-source.png": {"sha256": "6a95585fa431e615a78c75845c166d311e0e65355265ce4d39c9d674b1358643", "width": 1773, "height": 2364, "mode": "RGB"},
+    "architecture/xmu-04b-tower-front-cutout.png": {"sha256": "21979416214d6ef4c53fda406ca4fe08414b1010037b1ac49b99d377fa88d770", "width": 1500, "height": 2000, "mode": "RGBA"},
+    "architecture/xmu-05-tiered-main-building-cutout.png": {"sha256": "7777b4d23e17b93d33ae323776419b91a36459b9cb7c7e2064b6445d6ae51c16", "width": 2000, "height": 1124, "mode": "RGBA"},
+    "architecture/xmu-06-phoenix-building-landscape-cutout.png": {"sha256": "a447300fc07d40060b5e46f928d625dfca6b8a5b1f527b8af87d0e9aef0295d2", "width": 2000, "height": 1124, "mode": "RGBA"},
+    "architecture/xmu-07-roof-eave-right-cutout.png": {"sha256": "770d3743af04591644c965fff0d819bae6e033754533971ed2c92a4ae32bb993", "width": 1125, "height": 2000, "mode": "RGBA"},
+    "motifs/phoenix-flower-line.png": {"sha256": "c3e3ff021da3545e878f0b725000737d3417b258d4f423411b5926793111da8d", "width": 2000, "height": 2000, "mode": "RGBA"},
+    "motifs/phoenix-flower-emboss.png": {"sha256": "f49fe818baa32a8040ad9f3b85b1ea34255bcfdcf12df86af5c162d567ef19b1", "width": 2000, "height": 2000, "mode": "RGBA"},
+    "identity/xmu-lockup.png": {"sha256": "c80dbad6a02f0489584d76eb660062709169602559a1bbdb5e57d4c05331904e", "width": 648, "height": 180, "mode": "RGBA"},
+    "identity/xmu-seal.png": {"sha256": "9deb24e9e473488602fedf5501ca45ae92c8d1ad65b2610675abafa5b91d23c3", "width": 278, "height": 278, "mode": "RGBA"},
+    "examples/horizontal-aesthetic-standard-3840x2160.png": {"sha256": "5342efff665f903c0d8a2f0867e46fd8f889c2507c3203fa2fa3a4add45a455a", "width": 3840, "height": 2160, "mode": "RGB"},
+    "examples/portrait-electronic-ticket.png": {"sha256": "59d75c2e8b4d979a6feff704e7bb673b3ad0b25fca9742a2bf132a237b3ae4dc", "width": 2160, "height": 3600, "mode": "RGB"}
+  }
+}
