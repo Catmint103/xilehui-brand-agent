@@ -70,13 +70,44 @@ def verify_assets(_: argparse.Namespace) -> int:
         except Exception as exc:  # pragma: no cover - diagnostic path
             errors.append(f"unreadable image: {relative}: {exc}")
 
+    locked_sources = {
+        "som-triple-accreditation-psd": (
+            ASSET_DIR / "identity" / "masters" / "som-triple-accreditation-lockup-master.psd"
+        ),
+        "som-triple-accreditation-ai": (
+            ASSET_DIR / "identity" / "masters" / "som-triple-accreditation-lockup-master.ai"
+        ),
+        "mem25-anniversary-psd": (
+            ASSET_DIR / "identity" / "masters" / "mem25-anniversary-badge-master.psd"
+        ),
+    }
+    verified_sources = 0
+    for source_name, source_path in locked_sources.items():
+        expected_hash = manifest.get("sources", {}).get(source_name)
+        if expected_hash is None:
+            errors.append(f"missing source hash in manifest: {source_name}")
+            continue
+        if not source_path.is_file():
+            errors.append(f"missing source master: {source_path.relative_to(ASSET_DIR)}")
+            continue
+        verified_sources += 1
+        actual_hash = sha256(source_path)
+        if actual_hash != expected_hash:
+            errors.append(
+                f"source hash mismatch: {source_path.relative_to(ASSET_DIR)}\n"
+                f"  expected {expected_hash}\n  actual   {actual_hash}"
+            )
+
     if errors:
         print("Brand asset verification FAILED", file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
         return 1
 
-    print(f"Brand asset verification passed: {len(manifest['files'])} files")
+    print(
+        f"Brand asset verification passed: {len(manifest['files'])} image files, "
+        f"{verified_sources} source masters"
+    )
     return 0
 
 

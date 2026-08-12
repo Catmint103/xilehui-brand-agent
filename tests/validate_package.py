@@ -59,6 +59,19 @@ def check_assets() -> None:
             if image.mode != expected["mode"]:
                 fail(f"Asset mode mismatch: {relative}")
 
+    for source_name, expected_hash in manifest.get("sources", {}).items():
+        source_path = {
+            "som-triple-accreditation-psd": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.psd",
+            "som-triple-accreditation-ai": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.ai",
+            "mem25-anniversary-psd": SKILL / "assets" / "identity" / "masters" / "mem25-anniversary-badge-master.psd",
+        }.get(source_name)
+        if source_path is None:
+            continue
+        if not source_path.is_file():
+            fail(f"Missing source master: {source_path.relative_to(SKILL)}")
+        if sha256(source_path) != expected_hash:
+            fail(f"Source master hash mismatch: {source_path.relative_to(SKILL)}")
+
 
 def check_copywriting_knowledge() -> None:
     path = SKILL / "references" / "copywriting-library.md"
@@ -117,8 +130,10 @@ def check_required_files() -> None:
         SKILL / "references" / "creative-routing.md",
         SKILL / "references" / "aesthetic-acceptance.md",
         SKILL / "references" / "copywriting-library.md",
+        SKILL / "references" / "signature-lockup.md",
         SKILL / "scripts" / "brand_assets.py",
         SKILL / "scripts" / "palette_audit.py",
+        ROOT / "scripts" / "build_co_brand_assets.py",
         ROOT / "docs" / "index.html",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]

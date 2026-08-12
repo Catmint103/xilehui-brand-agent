@@ -3,6 +3,8 @@
 *.jpeg binary
 *.docx binary
 *.pdf binary
+*.psd binary
+*.ai binary
 *.sh text eol=lf
 *.md text eol=lf
 *.yml text eol=lf

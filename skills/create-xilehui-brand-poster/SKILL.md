@@ -1,6 +1,6 @@
 ---
 name: create-xilehui-brand-poster
-description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会暨2026级迎新晚会 / With ME·同行”及后续喜乐会活动创建、改版和审核品牌海报、电子门票、报名长图、社交媒体图片、屏幕宣传画面与可编辑设计稿。在固定主视觉配色、准确活动口径和厦大官方元素的前提下自由探索高级视觉风格，可结合静态画布、生成式图像、算法艺术、Figma 或系列主题系统；也用于检查品牌色、厦大元素、层级、活动全称和二维码是否正确。
+description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会暨2026级迎新晚会 / With ME·同行”及后续喜乐会活动创建、改版和审核品牌海报、电子门票、报名长图、社交媒体图片、屏幕宣传画面与可编辑设计稿。在固定主视觉配色、准确活动口径、厦大官方元素以及管院三证合一标识与25MEM班徽联合署名规范下自由探索高级视觉风格，可结合静态画布、生成式图像、算法艺术、Figma 或系列主题系统；也用于检查品牌色、厦大元素、联合署名、层级、活动全称和二维码是否正确。
 ---
 
 # 喜乐会品牌宣传物料
@@ -12,21 +12,23 @@ description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会�
 1. 阅读 [references/brand-system.md](references/brand-system.md)，只锁定品牌识别，不锁定一种版式或质感。
 2. 为当前第14届中秋喜乐会暨2026级迎新晚会制作物料时，阅读 [references/current-campaign.md](references/current-campaign.md)，原样使用其中已确认的信息。
 3. 任务涉及推文、邀请函、活动长文案、标题或语气提炼时，阅读 [references/copywriting-library.md](references/copywriting-library.md)。它只提供用户给定的写作素材；与当前活动事实或标准写法冲突时，以用户最新输入、`current-campaign.md` 和 `brand-system.md` 为准。
-4. 需要建筑、凤凰花或校徽时，阅读 [references/asset-catalog.md](references/asset-catalog.md)，只从 `assets/` 选材。
-5. 阅读 [references/creative-routing.md](references/creative-routing.md)，按交付物选择最少且合适的辅助 skill。
-6. 根据成品比例阅读 [references/layout-patterns.md](references/layout-patterns.md)；把其中模式视为起点，不视为模板。
-7. 阅读 [references/aesthetic-acceptance.md](references/aesthetic-acceptance.md)，用通用完成度标准验收。历史示例仅用于观察品质，不要求构图或材质相似。
-8. 明确画布尺寸、文案、日期地点、是否含票价、是否有正式二维码。缺少业务信息时允许先做明确标注“二维码待填”的审核稿，不得伪造最终信息。
+4. 阅读 [references/asset-catalog.md](references/asset-catalog.md)，建筑、凤凰花、校徽与机构标识只从 `assets/` 选材。
+5. 只要成品准备对外发布，阅读 [references/signature-lockup.md](references/signature-lockup.md)，预留管院三证合一标识与25MEM班徽的联合署名区。
+6. 阅读 [references/creative-routing.md](references/creative-routing.md)，按交付物选择最少且合适的辅助 skill。
+7. 根据成品比例阅读 [references/layout-patterns.md](references/layout-patterns.md)；把其中模式视为起点，不视为模板。
+8. 阅读 [references/aesthetic-acceptance.md](references/aesthetic-acceptance.md)，用通用完成度标准验收。历史示例仅用于观察品质，不要求构图或材质相似。
+9. 明确画布尺寸、文案、日期地点、是否含票价、是否有正式二维码。缺少业务信息时允许先做明确标注“二维码待填”的审核稿，不得伪造最终信息。
 
 ## 品牌硬约束
 
-- 只使用品牌六色及其明暗、透明度变化：`#4A1420`、`#7A2E3D`、`#A9976A`、`#4F6272`、`#E7E0D3`、`#2E2A26`。
+- 画面设计只使用品牌六色及其明暗、透明度变化：`#4A1420`、`#7A2E3D`、`#A9976A`、`#4F6272`、`#E7E0D3`、`#2E2A26`。机构标识锁定 PNG 内的原生色按 `signature-lockup.md` 作为唯一例外，不能抽取为装饰色。
 - 以勃艮第红或酒渍红为主色；香槟金只作线稿、细边、少量标题高光；蓝灰只作极少量辅助。
 - 至少使用一个可识别的厦大官方元素：标准建筑、校徽或中英文组合标志。需要建筑时直接复用 `assets/architecture/`；禁止通过生图、描摹或重新画线生成近似建筑。
 - 保持建筑长宽比和轮廓不变。只允许等比缩放、裁切、透明度、蒙版、单色着色、压印或烫金材质。禁止非等比拉伸、透视扭曲、局部补画、删改屋脊或拼接出新建筑。
 - 不让图像模型生成校徽、建筑、二维码或文字。需要 AI 纹理时只生成无文字、无建筑、无标志的背景材质，再叠加标准资产与真实文字。
 - 保持“同行”两个字同字号、同高度、同基线；让中文与 `With ME` 的视觉高度协调。
 - 使用真实字体排版文字。不得把模型生成的乱码文字作为最终稿。
+- 所有对外审核稿和发布稿必须同时出现管院三证合一完整标识与25MEM班徽。优先使用标准联合署名资产，保持原色、比例、顺序、内部间距和安全空间；不得省略、拆分认证标志、重排或特效化。
 
 ## 生成流程
 
@@ -63,20 +65,26 @@ python scripts/brand_assets.py tint \
 
 脚本只从原始像素生成透明单色层，不改变轮廓、比例和尺寸。
 
-### 4. 先做构图，再做媒介与材质
+### 4. 建立对外联合署名区
+
+外宣物料先在网格中预留独立署名区，再使用 `assets/identity/xilehui-publicity-signature-light.png` 或 `assets/identity/xilehui-publicity-signature-dark.png`。默认放在底部并低于主要信息层级；只有画布比例确实不适合横条时，才分别放置三证合一标识与25MEM班徽，但仍须组成同一视觉组。
+
+在目标手机尺寸检查一次：联合署名不应压过主标题、日期、价格、表格或二维码，也不能小到班徽和三项认证只剩无意义色块。具体尺度、留白和颜色例外见 `signature-lockup.md`。
+
+### 5. 先做构图，再做媒介与材质
 
 先用纯色块、真实文字和标准厦大元素建立信息关系。确认主标题、身份元素、信息区和二维码在缩略图中平衡后，再发展选定的媒介语言。
 
 图文可以分离、穿插、框景或局部叠合，但必须有明确层级和可读边界。若使用建筑，不得因效果处理而失去官方轮廓识别。
 
-### 5. 控制风格一致性
+### 6. 控制风格一致性
 
 - 每版选择一种主导媒介语言，例如纸张与压印、现代编辑网格、透明叠色、摄影与线稿、算法流场、几何切片、墨色层次或克制的空间光影。
 - 不要求暗红纸感、凤凰花压纹、金轴或建筑金线同时出现。
 - 让所有元素服从同一视觉命题；避免把复古、国潮、科技、3D 和网页卡片语言无目的混搭。
 - 让金色保持克制；避免亮黄塑料金、厚外发光、廉价浮雕和高饱和节庆模板感。
 
-### 6. 处理二维码
+### 7. 处理二维码
 
 - 有正式二维码时直接嵌入，不重绘、不透视、不圆角裁切二维码模块。
 - 没有正式二维码时使用明确占位，不生成看似可扫的假码。
@@ -84,7 +92,7 @@ python scripts/brand_assets.py tint \
 - 使用骰子构图时，让四点骰子的外轮廓和至少三个点清晰可见；二维码可替代其中一个点位，但必须保留完整静区。
 - 在 25% 缩放和手机屏幕尺寸各测试一次扫码。
 
-### 7. 输出与比较
+### 8. 输出与比较
 
 首次探索输出 2-4 个构图差异明显的版本；后续优化只改变用户点名的问题，保持已确认部分稳定。默认交付：
 
@@ -101,8 +109,9 @@ python scripts/brand_assets.py tint \
 2. 运行 `python scripts/palette_audit.py <final.png> --mode dark`；浅米底版改用 `--mode light`。
 3. 以原尺寸和 25% 缩略图分别检查主次、留白、文字换行、建筑可见度和二维码静区。
 4. 确认没有建筑变形、偶然空洞、无意拥挤、图文粘连、辅助信息抢主视觉或金色面积失控等问题；非常规留白与叠合可以保留，但必须服务清楚的视觉命题。
-5. 确认日期、地点、价格和报名文案来自用户，不从旧稿自动沿用。
-6. 依据 `aesthetic-acceptance.md` 检查视觉命题、层级、重心、间距、材质和完成度。可与历史示例并排观察精细度，但不得以相似度作为通过条件。
+5. 对外物料确认联合署名完整、只出现一次、未变形、未改色，且在原尺寸、25% 缩略图和目标手机尺寸可辨识；深底必须使用米色承托版。
+6. 确认日期、地点、价格和报名文案来自用户，不从旧稿自动沿用。
+7. 依据 `aesthetic-acceptance.md` 检查视觉命题、层级、重心、间距、材质和完成度。可与历史示例并排观察精细度，但不得以相似度作为通过条件。
 
 配色审计只作为机械预警；人工仍须依据品牌规范判断纹理和抗锯齿产生的合理色差。
 
@@ -110,12 +119,13 @@ python scripts/brand_assets.py tint \
 
 - `assets/architecture/`：两套官方 PPT 共同使用的建筑母版。
 - `assets/motifs/`：凤凰花线纹和压纹母版。
-- `assets/identity/`：厦大校徽与中英文组合标志；仅在用户要求时使用。
+- `assets/identity/`：厦大校徽、标准校名组合标志、管院三证合一标识、25MEM班徽和浅／深底联合署名资产。
 - `assets/examples/horizontal-aesthetic-standard-3840x2160.png`：历史高完成度横版样例，只参考精细度、品牌色与信息清晰度。
 - `assets/examples/portrait-electronic-ticket.png`：历史竖版样例，只作一种构图思路。
 - `references/creative-routing.md`：静态画布、生图、算法艺术、Figma 与系列主题的辅助 skill 路由。
 - `references/aesthetic-acceptance.md`：不绑定具体风格的通用审美与完成度验收规则。
 - `references/current-campaign.md`：当前第14届中秋喜乐会暨2026级迎新晚会已确认的活动全称、日期和主题口径。
 - `references/copywriting-library.md`：用户提供的推文与邀请函原文、来源哈希、适用场景和事实冲突处理规则。
+- `references/signature-lockup.md`：所有对外物料必须遵循的联合署名层级、尺度、留白、颜色例外与手机端验收规则。
 - `scripts/brand_assets.py`：列出、验真并转换标准线稿。
 - `scripts/palette_audit.py`：审计成稿与主视觉色系的接近程度。

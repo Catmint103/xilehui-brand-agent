@@ -1,9 +1,12 @@
 {
-  "version": 1,
+  "version": 2,
   "sources": {
     "furong-pptx": "7bf7e1a09b19343ba664b83b75ffacf64cb3ba3ba7c74d06196de7477998b939",
     "chao-pptx": "13c38ec3c664b4e6c339a834ca867cb69af467f938888ac3263b0a49f12a2d59",
-    "main-visual-pdf": "28d1678632380ddc4d965329f1e157f361d27bea9a3f5600369107b05b58ddf7"
+    "main-visual-pdf": "28d1678632380ddc4d965329f1e157f361d27bea9a3f5600369107b05b58ddf7",
+    "som-triple-accreditation-psd": "3a54c975a56787772dbdee65fada606a0f12956f7402402dd561e6d66b3c50f2",
+    "som-triple-accreditation-ai": "503f54eb5ab8cec1e1bec660787db5afc7a4366feb79b9bc60ee589224abb45a",
+    "mem25-anniversary-psd": "0a04509447d11935b66dec5d6f8678c1bbcc2e388d8494eee12fd305bd0e2788"
   },
   "files": {
     "architecture/xmu-01-statue-front.png": {"sha256": "9ad2af99099ba3ebcbecb9bc2726edb89df999f841766a05f56aa2869ec7b989", "width": 1773, "height": 2364, "mode": "RGB"},
@@ -18,6 +21,10 @@
     "motifs/phoenix-flower-emboss.png": {"sha256": "f49fe818baa32a8040ad9f3b85b1ea34255bcfdcf12df86af5c162d567ef19b1", "width": 2000, "height": 2000, "mode": "RGBA"},
     "identity/xmu-lockup.png": {"sha256": "c80dbad6a02f0489584d76eb660062709169602559a1bbdb5e57d4c05331904e", "width": 648, "height": 180, "mode": "RGBA"},
     "identity/xmu-seal.png": {"sha256": "9deb24e9e473488602fedf5501ca45ae92c8d1ad65b2610675abafa5b91d23c3", "width": 278, "height": 278, "mode": "RGBA"},
+    "identity/som-triple-accreditation-lockup-color.png": {"sha256": "08752b5c11b5e8e6a52d63467af95aae5e61facc5103fe948a18391d6606b1b7", "width": 1806, "height": 160, "mode": "RGBA"},
+    "identity/mem25-anniversary-badge-color.png": {"sha256": "18d44a8721522a98591419d2e5a8d025aa47339dbe44edf3cd8f20096e6bed8f", "width": 3333, "height": 3333, "mode": "RGBA"},
+    "identity/xilehui-publicity-signature-light.png": {"sha256": "641002862c3b371df8974a8ef5bce8eb57dd039330668c6de4ff32733fe9bc1f", "width": 2400, "height": 360, "mode": "RGBA"},
+    "identity/xilehui-publicity-signature-dark.png": {"sha256": "333bf3b5609ae10d5c65c4ab1a4820bfe47b08ed35f8a4dad13ed2641bdeb96e", "width": 2400, "height": 360, "mode": "RGBA"},
     "examples/horizontal-aesthetic-standard-3840x2160.png": {"sha256": "5342efff665f903c0d8a2f0867e46fd8f889c2507c3203fa2fa3a4add45a455a", "width": 3840, "height": 2160, "mode": "RGB"},
     "examples/portrait-electronic-ticket.png": {"sha256": "59d75c2e8b4d979a6feff704e7bb673b3ad0b25fca9742a2bf132a237b3ae4dc", "width": 2160, "height": 3600, "mode": "RGB"}
   }
