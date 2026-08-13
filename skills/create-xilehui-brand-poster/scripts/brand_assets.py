@@ -77,6 +77,9 @@ def verify_assets(_: argparse.Namespace) -> int:
         "som-triple-accreditation-ai": (
             ASSET_DIR / "identity" / "masters" / "som-triple-accreditation-lockup-master.ai"
         ),
+        "som-alumni-association-jpg": (
+            ASSET_DIR / "identity" / "masters" / "som-alumni-association-lockup-source.jpg"
+        ),
         "mem25-anniversary-psd": (
             ASSET_DIR / "identity" / "masters" / "mem25-anniversary-badge-master.psd"
         ),

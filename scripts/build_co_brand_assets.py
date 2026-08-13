@@ -24,37 +24,66 @@ def place(canvas: Image.Image, image: Image.Image, xy: tuple[int, int]) -> None:
     canvas.alpha_composite(image, xy)
 
 
+def remove_near_white(image: Image.Image) -> Image.Image:
+    rgba = image.convert("RGBA")
+    pixels = rgba.load()
+    for y in range(rgba.height):
+        for x in range(rgba.width):
+            red, green, blue, alpha = pixels[x, y]
+            lightest = min(red, green, blue)
+            if lightest >= 248:
+                alpha = 0
+            elif lightest > 225:
+                alpha = round(alpha * (248 - lightest) / 23)
+            pixels[x, y] = (red, green, blue, alpha)
+    bbox = rgba.getchannel("A").getbbox()
+    if bbox is None:
+        raise ValueError("alumni logo became empty after background removal")
+    return rgba.crop(bbox)
+
+
 def render_lockup(
     som: Image.Image,
+    alumni: Image.Image,
     mem: Image.Image,
     output: Path,
     *,
     plate: bool,
 ) -> None:
-    width, height = 2400, 360
+    width, height = 2800, 420
     canvas = Image.new("RGBA", (width, height), (0, 0, 0, 0))
     draw = ImageDraw.Draw(canvas)
 
     if plate:
         draw.rounded_rectangle(
             (2, 2, width - 3, height - 3),
-            radius=34,
+            radius=38,
             fill=CREAM,
             outline=CHAMPAGNE,
             width=3,
         )
 
-    som_layer = contain(som, (1840, 190))
-    mem_layer = contain(mem, (246, 246))
-    som_x = 104
+    alumni_layer = contain(alumni, (470, 292))
+    som_layer = contain(som, (1700, 174))
+    mem_layer = contain(mem, (262, 262))
+    alumni_x = 76
+    alumni_y = (height - alumni_layer.height) // 2
+    divider_left_x = 594
+    som_x = 654
     som_y = (height - som_layer.height) // 2
-    divider_x = 2026
-    mem_x = 2090
+    divider_right_x = 2408
+    mem_x = 2470
     mem_y = (height - mem_layer.height) // 2
 
+    place(canvas, alumni_layer, (alumni_x, alumni_y))
+    draw.rounded_rectangle(
+        (divider_left_x, 92, divider_left_x + 3, height - 92),
+        radius=2,
+        fill=(*CHAMPAGNE[:3], 185),
+    )
     place(canvas, som_layer, (som_x, som_y))
     draw.rounded_rectangle(
-        (divider_x, 78, divider_x + 3, height - 78),
+        (divider_right_x, 92, divider_right_x + 3, height - 92),
         radius=2,
         fill=(*CHAMPAGNE[:3], 185),
     )
@@ -67,11 +96,12 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--som-psd", type=Path, required=True)
     parser.add_argument("--som-ai", type=Path, required=True)
+    parser.add_argument("--alumni-logo", type=Path, required=True)
     parser.add_argument("--mem-psd", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     args = parser.parse_args()
 
-    for source in (args.som_psd, args.som_ai, args.mem_psd):
+    for source in (args.som_psd, args.som_ai, args.alumni_logo, args.mem_psd):
         if not source.is_file():
             raise FileNotFoundError(source)
 
@@ -79,18 +109,22 @@ def main() -> int:
     output_dir.mkdir(parents=True, exist_ok=True)
 
     som = Image.open(args.som_psd).convert("RGBA")
+    alumni = remove_near_white(Image.open(args.alumni_logo))
     mem = Image.open(args.mem_psd).convert("RGBA")
     som.save(output_dir / "som-triple-accreditation-lockup-color.png", optimize=True)
+    alumni.save(output_dir / "som-alumni-association-lockup-color.png", optimize=True)
     mem.save(output_dir / "mem25-anniversary-badge-color.png", optimize=True)
 
     render_lockup(
         som,
+        alumni,
         mem,
         output_dir / "xilehui-publicity-signature-light.png",
         plate=False,
     )
     render_lockup(
         som,
+        alumni,
         mem,
         output_dir / "xilehui-publicity-signature-dark.png",
         plate=True,
@@ -100,6 +134,7 @@ def main() -> int:
     for source, name in (
         (args.som_psd, "som-triple-accreditation-lockup-master.psd"),
         (args.som_ai, "som-triple-accreditation-lockup-master.ai"),
+        (args.alumni_logo, "som-alumni-association-lockup-source.jpg"),
         (args.mem_psd, "mem25-anniversary-badge-master.psd"),
     ):
         destination = output_dir / "masters" / name

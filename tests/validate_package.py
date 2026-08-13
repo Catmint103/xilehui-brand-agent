@@ -63,6 +63,7 @@ def check_assets() -> None:
         source_path = {
             "som-triple-accreditation-psd": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.psd",
             "som-triple-accreditation-ai": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.ai",
+            "som-alumni-association-jpg": SKILL / "assets" / "identity" / "masters" / "som-alumni-association-lockup-source.jpg",
             "mem25-anniversary-psd": SKILL / "assets" / "identity" / "masters" / "mem25-anniversary-badge-master.psd",
         }.get(source_name)
         if source_path is None:
@@ -95,6 +96,52 @@ def check_copywriting_knowledge() -> None:
     skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
     if "references/copywriting-library.md" not in skill_text:
         fail("SKILL.md does not route copywriting tasks to the knowledge base")
+
+
+def check_signature_composition() -> None:
+    identity = SKILL / "assets" / "identity"
+    required = {
+        "som-alumni-association-lockup-color.png",
+        "som-triple-accreditation-lockup-color.png",
+        "mem25-anniversary-badge-color.png",
+        "xilehui-publicity-signature-light.png",
+        "xilehui-publicity-signature-dark.png",
+    }
+    manifest = json.loads((SKILL / "assets" / "manifest.json").read_text(encoding="utf-8"))
+    missing = sorted(
+        name for name in required if f"identity/{name}" not in manifest["files"]
+    )
+    if missing:
+        fail("Required publicity identity assets missing from manifest: " + ", ".join(missing))
+
+    light = Image.open(identity / "xilehui-publicity-signature-light.png").convert("RGBA")
+    if light.size != (2800, 420):
+        fail(f"Unexpected three-party signature size: {light.size}")
+    zones = {
+        "alumni association": (0, 0, 600, 420),
+        "triple accreditation": (600, 0, 2400, 420),
+        "25MEM": (2400, 0, 2800, 420),
+    }
+    for label, box in zones.items():
+        if light.crop(box).getchannel("A").getbbox() is None:
+            fail(f"Three-party signature omits {label} zone")
+
+    alumni = light.crop(zones["alumni association"])
+    alumni_pixels = (
+        alumni.get_flattened_data() if hasattr(alumni, "get_flattened_data") else alumni.getdata()
+    )
+    red_pixels = sum(
+        1
+        for red, green, blue, alpha in alumni_pixels
+        if alpha > 100 and red > 90 and red > green * 1.4 and red > blue * 1.2
+    )
+    if red_pixels < 1200:
+        fail("Alumni association red phoenix mark is absent or too faint")
+
+    rules = (SKILL / "references" / "signature-lockup.md").read_text(encoding="utf-8")
+    for phrase in ("管理学院校友会", "三证合一", "25MEM"):
+        if phrase not in rules:
+            fail(f"Signature rule omits required identity: {phrase}")
 
 
 def check_portability() -> None:
@@ -146,6 +193,7 @@ def main() -> int:
         check_skill_metadata,
         check_assets,
         check_copywriting_knowledge,
+        check_signature_composition,
         check_portability,
         check_required_files,
     ]

@@ -43,4 +43,4 @@ git remote -v
 1. `python3 tests/validate_package.py`
 2. `python3 skills/create-xilehui-brand-poster/scripts/brand_assets.py verify`
 3. 检查 `inputs/`、`outputs/` 没有个人信息、内部二维码或未发布物料。
-4. 新增品牌资产时更新 `assets/manifest.json`，并说明来源与使用权限；管院三证合一标识和25MEM班徽母版必须同时校验源文件哈希与生产 PNG 哈希。
+4. 新增品牌资产时更新 `assets/manifest.json`，并说明来源与使用权限；管理学院校友会标识、管院三证合一标识和25MEM班徽必须同时校验源文件哈希与生产 PNG 哈希。

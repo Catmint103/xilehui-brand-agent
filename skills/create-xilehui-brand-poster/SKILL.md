@@ -1,6 +1,6 @@
 ---
 name: create-xilehui-brand-poster
-description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会暨2026级迎新晚会 / With ME·同行”及后续喜乐会活动创建、改版和审核品牌海报、电子门票、报名长图、社交媒体图片、屏幕宣传画面与可编辑设计稿。在固定主视觉配色、准确活动口径、厦大官方元素以及管院三证合一标识与25MEM班徽联合署名规范下自由探索高级视觉风格，可结合静态画布、生成式图像、算法艺术、Figma 或系列主题系统；也用于检查品牌色、厦大元素、联合署名、层级、活动全称和二维码是否正确。
+description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会暨2026级迎新晚会 / With ME·同行”及后续喜乐会活动创建、改版和审核品牌海报、电子门票、报名长图、社交媒体图片、屏幕宣传画面与可编辑设计稿。在固定主视觉配色、准确活动口径、厦大官方元素以及管理学院校友会标识、管院三证合一标识与25MEM班徽三方联合署名规范下自由探索高级视觉风格，可结合静态画布、生成式图像、算法艺术、Figma 或系列主题系统；也用于检查品牌色、厦大元素、联合署名、层级、活动全称和二维码是否正确。
 ---
 
 # 喜乐会品牌宣传物料
@@ -13,7 +13,7 @@ description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会�
 2. 为当前第14届中秋喜乐会暨2026级迎新晚会制作物料时，阅读 [references/current-campaign.md](references/current-campaign.md)，原样使用其中已确认的信息。
 3. 任务涉及推文、邀请函、活动长文案、标题或语气提炼时，阅读 [references/copywriting-library.md](references/copywriting-library.md)。它只提供用户给定的写作素材；与当前活动事实或标准写法冲突时，以用户最新输入、`current-campaign.md` 和 `brand-system.md` 为准。
 4. 阅读 [references/asset-catalog.md](references/asset-catalog.md)，建筑、凤凰花、校徽与机构标识只从 `assets/` 选材。
-5. 只要成品准备对外发布，阅读 [references/signature-lockup.md](references/signature-lockup.md)，预留管院三证合一标识与25MEM班徽的联合署名区。
+5. 只要成品准备对外发布，阅读 [references/signature-lockup.md](references/signature-lockup.md)，预留管理学院校友会标识、管院三证合一标识与25MEM班徽的三方联合署名区。
 6. 阅读 [references/creative-routing.md](references/creative-routing.md)，按交付物选择最少且合适的辅助 skill。
 7. 根据成品比例阅读 [references/layout-patterns.md](references/layout-patterns.md)；把其中模式视为起点，不视为模板。
 8. 阅读 [references/aesthetic-acceptance.md](references/aesthetic-acceptance.md)，用通用完成度标准验收。历史示例仅用于观察品质，不要求构图或材质相似。
@@ -28,7 +28,7 @@ description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会�
 - 不让图像模型生成校徽、建筑、二维码或文字。需要 AI 纹理时只生成无文字、无建筑、无标志的背景材质，再叠加标准资产与真实文字。
 - 保持“同行”两个字同字号、同高度、同基线；让中文与 `With ME` 的视觉高度协调。
 - 使用真实字体排版文字。不得把模型生成的乱码文字作为最终稿。
-- 所有对外审核稿和发布稿必须同时出现管院三证合一完整标识与25MEM班徽。优先使用标准联合署名资产，保持原色、比例、顺序、内部间距和安全空间；不得省略、拆分认证标志、重排或特效化。
+- 所有对外审核稿和发布稿必须同时出现管理学院校友会完整标识、管院三证合一完整标识与25MEM班徽。优先使用标准三方联合署名资产，保持原色、比例、顺序、内部间距和安全空间；不得省略、拆分认证标志、重排或特效化。
 
 ## 生成流程
 
@@ -67,9 +67,9 @@ python scripts/brand_assets.py tint \
 
 ### 4. 建立对外联合署名区
 
-外宣物料先在网格中预留独立署名区，再使用 `assets/identity/xilehui-publicity-signature-light.png` 或 `assets/identity/xilehui-publicity-signature-dark.png`。默认放在底部并低于主要信息层级；只有画布比例确实不适合横条时，才分别放置三证合一标识与25MEM班徽，但仍须组成同一视觉组。
+外宣物料先在网格中预留独立署名区，再使用 `assets/identity/xilehui-publicity-signature-light.png` 或 `assets/identity/xilehui-publicity-signature-dark.png`。默认放在底部并低于主要信息层级；只有画布比例确实不适合横条时，才分别放置管理学院校友会标识、三证合一标识与25MEM班徽，但仍须组成同一视觉组。
 
-在目标手机尺寸检查一次：联合署名不应压过主标题、日期、价格、表格或二维码，也不能小到班徽和三项认证只剩无意义色块。具体尺度、留白和颜色例外见 `signature-lockup.md`。
+在目标手机尺寸检查一次：联合署名不应压过主标题、日期、价格、表格或二维码，也不能小到校友会文字、班徽和三项认证只剩无意义色块。具体尺度、留白和颜色例外见 `signature-lockup.md`。
 
 ### 5. 先做构图，再做媒介与材质
 
@@ -119,7 +119,7 @@ python scripts/brand_assets.py tint \
 
 - `assets/architecture/`：两套官方 PPT 共同使用的建筑母版。
 - `assets/motifs/`：凤凰花线纹和压纹母版。
-- `assets/identity/`：厦大校徽、标准校名组合标志、管院三证合一标识、25MEM班徽和浅／深底联合署名资产。
+- `assets/identity/`：厦大校徽、标准校名组合标志、管理学院校友会标识、管院三证合一标识、25MEM班徽和浅／深底三方联合署名资产。
 - `assets/examples/horizontal-aesthetic-standard-3840x2160.png`：历史高完成度横版样例，只参考精细度、品牌色与信息清晰度。
 - `assets/examples/portrait-electronic-ticket.png`：历史竖版样例，只作一种构图思路。
 - `references/creative-routing.md`：静态画布、生图、算法艺术、Figma 与系列主题的辅助 skill 路由。
