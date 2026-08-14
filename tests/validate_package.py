@@ -60,6 +60,30 @@ def check_assets() -> None:
                 fail(f"Asset mode mismatch: {relative}")
 
 
+def check_copywriting_knowledge() -> None:
+    path = SKILL / "references" / "copywriting-library.md"
+    if not path.is_file():
+        fail("Copywriting knowledge base is missing")
+
+    text = path.read_text(encoding="utf-8")
+    required = (
+        "281a2d71d92e67d166ec07c916b2b09bf83e05388ef5f45fcbda9b05352a2023",
+        "39f4cc1538f69ccf3fb579804b2cd572d77666b25c0f07756d958a6b542e4aaa",
+        "## 推文文案原文",
+        "## 邀请函文案原文",
+        "香格里拉酒店",
+        "具体时段和地点列为待确认",
+        "current-campaign.md",
+    )
+    for phrase in required:
+        if phrase not in text:
+            fail(f"Copywriting knowledge base omits required provenance or guardrail: {phrase}")
+
+    skill_text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
+    if "references/copywriting-library.md" not in skill_text:
+        fail("SKILL.md does not route copywriting tasks to the knowledge base")
+
+
 def check_portability() -> None:
     forbidden = (
         "/" + "Users" + "/",
@@ -92,6 +116,7 @@ def check_required_files() -> None:
         ROOT / "ASSET-LICENSE.md",
         SKILL / "references" / "creative-routing.md",
         SKILL / "references" / "aesthetic-acceptance.md",
+        SKILL / "references" / "copywriting-library.md",
         SKILL / "scripts" / "brand_assets.py",
         SKILL / "scripts" / "palette_audit.py",
         ROOT / "docs" / "index.html",
@@ -102,7 +127,13 @@ def check_required_files() -> None:
 
 
 def main() -> int:
-    checks = [check_skill_metadata, check_assets, check_portability, check_required_files]
+    checks = [
+        check_skill_metadata,
+        check_assets,
+        check_copywriting_knowledge,
+        check_portability,
+        check_required_files,
+    ]
     for check in checks:
         check()
         print(f"PASS {check.__name__}")

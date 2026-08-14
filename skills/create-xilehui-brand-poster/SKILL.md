@@ -11,11 +11,12 @@ description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会�
 
 1. 阅读 [references/brand-system.md](references/brand-system.md)，只锁定品牌识别，不锁定一种版式或质感。
 2. 为当前第14届中秋喜乐会暨2026级迎新晚会制作物料时，阅读 [references/current-campaign.md](references/current-campaign.md)，原样使用其中已确认的信息。
-3. 需要建筑、凤凰花或校徽时，阅读 [references/asset-catalog.md](references/asset-catalog.md)，只从 `assets/` 选材。
-4. 阅读 [references/creative-routing.md](references/creative-routing.md)，按交付物选择最少且合适的辅助 skill。
-5. 根据成品比例阅读 [references/layout-patterns.md](references/layout-patterns.md)；把其中模式视为起点，不视为模板。
-6. 阅读 [references/aesthetic-acceptance.md](references/aesthetic-acceptance.md)，用通用完成度标准验收。历史示例仅用于观察品质，不要求构图或材质相似。
-7. 明确画布尺寸、文案、日期地点、是否含票价、是否有正式二维码。缺少业务信息时允许先做明确标注“二维码待填”的审核稿，不得伪造最终信息。
+3. 任务涉及推文、邀请函、活动长文案、标题或语气提炼时，阅读 [references/copywriting-library.md](references/copywriting-library.md)。它只提供用户给定的写作素材；与当前活动事实或标准写法冲突时，以用户最新输入、`current-campaign.md` 和 `brand-system.md` 为准。
+4. 需要建筑、凤凰花或校徽时，阅读 [references/asset-catalog.md](references/asset-catalog.md)，只从 `assets/` 选材。
+5. 阅读 [references/creative-routing.md](references/creative-routing.md)，按交付物选择最少且合适的辅助 skill。
+6. 根据成品比例阅读 [references/layout-patterns.md](references/layout-patterns.md)；把其中模式视为起点，不视为模板。
+7. 阅读 [references/aesthetic-acceptance.md](references/aesthetic-acceptance.md)，用通用完成度标准验收。历史示例仅用于观察品质，不要求构图或材质相似。
+8. 明确画布尺寸、文案、日期地点、是否含票价、是否有正式二维码。缺少业务信息时允许先做明确标注“二维码待填”的审核稿，不得伪造最终信息。
 
 ## 品牌硬约束
 
@@ -115,5 +116,6 @@ python scripts/brand_assets.py tint \
 - `references/creative-routing.md`：静态画布、生图、算法艺术、Figma 与系列主题的辅助 skill 路由。
 - `references/aesthetic-acceptance.md`：不绑定具体风格的通用审美与完成度验收规则。
 - `references/current-campaign.md`：当前第14届中秋喜乐会暨2026级迎新晚会已确认的活动全称、日期和主题口径。
+- `references/copywriting-library.md`：用户提供的推文与邀请函原文、来源哈希、适用场景和事实冲突处理规则。
 - `scripts/brand_assets.py`：列出、验真并转换标准线稿。
 - `scripts/palette_audit.py`：审计成稿与主视觉色系的接近程度。
