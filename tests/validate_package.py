@@ -139,7 +139,7 @@ def check_signature_composition() -> None:
         fail("Alumni association red phoenix mark is absent or too faint")
 
     rules = (SKILL / "references" / "signature-lockup.md").read_text(encoding="utf-8")
-    for phrase in ("管理学院校友会", "三证合一", "25MEM"):
+    for phrase in ("管理学院校友会", "三证合一", "25MEM", "通栏石灰米页脚承托区"):
         if phrase not in rules:
             fail(f"Signature rule omits required identity: {phrase}")
 

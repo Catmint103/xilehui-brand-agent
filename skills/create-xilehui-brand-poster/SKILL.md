@@ -67,7 +67,7 @@ python scripts/brand_assets.py tint \
 
 ### 4. 建立对外联合署名区
 
-外宣物料先在网格中预留独立署名区，再使用 `assets/identity/xilehui-publicity-signature-light.png` 或 `assets/identity/xilehui-publicity-signature-dark.png`。默认放在底部并低于主要信息层级；只有画布比例确实不适合横条时，才分别放置管理学院校友会标识、三证合一标识与25MEM班徽，但仍须组成同一视觉组。
+外宣物料先在网格中预留独立署名区，再使用 `assets/identity/xilehui-publicity-signature-light.png` 或 `assets/identity/xilehui-publicity-signature-dark.png`。默认放在底部并低于主要信息层级。深色信息型版面优先建立与正文或表格网格对齐的通栏石灰米承托区，再放置浅底联合署名；不得把承托区做成悬浮的圆角 Logo 卡片。只有画布无法容纳通栏页脚时，才使用紧凑深底承托版；只有比例确实不适合横条时，才分别放置三个标识，但仍须组成同一视觉组。
 
 在目标手机尺寸检查一次：联合署名不应压过主标题、日期、价格、表格或二维码，也不能小到校友会文字、班徽和三项认证只剩无意义色块。具体尺度、留白和颜色例外见 `signature-lockup.md`。
 
@@ -109,7 +109,7 @@ python scripts/brand_assets.py tint \
 2. 运行 `python scripts/palette_audit.py <final.png> --mode dark`；浅米底版改用 `--mode light`。
 3. 以原尺寸和 25% 缩略图分别检查主次、留白、文字换行、建筑可见度和二维码静区。
 4. 确认没有建筑变形、偶然空洞、无意拥挤、图文粘连、辅助信息抢主视觉或金色面积失控等问题；非常规留白与叠合可以保留，但必须服务清楚的视觉命题。
-5. 对外物料确认联合署名完整、只出现一次、未变形、未改色，且在原尺寸、25% 缩略图和目标手机尺寸可辨识；深底必须使用米色承托版。
+5. 对外物料确认联合署名完整、只出现一次、未变形、未改色，且在原尺寸、25% 缩略图和目标手机尺寸可辨识；深底必须有完整米色承托，信息型版面优先采用与主网格对齐的通栏页脚，不做悬浮圆角卡片。
 6. 确认日期、地点、价格和报名文案来自用户，不从旧稿自动沿用。
 7. 依据 `aesthetic-acceptance.md` 检查视觉命题、层级、重心、间距、材质和完成度。可与历史示例并排观察精细度，但不得以相似度作为通过条件。
 
