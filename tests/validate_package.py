@@ -98,6 +98,21 @@ def check_copywriting_knowledge() -> None:
         fail("SKILL.md does not route copywriting tasks to the knowledge base")
 
 
+def check_revision_freeze_policy() -> None:
+    required_by_file = {
+        ROOT / "AGENTS.md": ("冻结基线", "修改窗口", "SHA-256", "范围外差异"),
+        SKILL / "SKILL.md": ("冻结基线", "最小改动提示词", "不得使用全图重新生成", "修改窗口外"),
+        ROOT / "agent" / "workspace-agent-builder.md": ("最小修改窗口", "范围外发生变化"),
+        ROOT / "examples" / "prompts.md": ("唯一基线", "范围外差异结果"),
+        ROOT / "examples" / "acceptance-cases.md": ("最近确认稿", "差异为零"),
+    }
+    for path, phrases in required_by_file.items():
+        text = path.read_text(encoding="utf-8")
+        for phrase in phrases:
+            if phrase not in text:
+                fail(f"Revision freeze policy is incomplete in {path.relative_to(ROOT)}: {phrase}")
+
+
 def check_signature_composition() -> None:
     identity = SKILL / "assets" / "identity"
     required = {
@@ -193,6 +208,7 @@ def main() -> int:
         check_skill_metadata,
         check_assets,
         check_copywriting_knowledge,
+        check_revision_freeze_policy,
         check_signature_composition,
         check_portability,
         check_required_files,

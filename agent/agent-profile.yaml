@@ -18,5 +18,4 @@ human_approval_required:
   - "品牌硬约束或活动口径的任何变更"
   - "最终对外发布"
 default_prompt: "请使用 $create-xilehui-brand-poster，为本次喜乐会制作一组社交媒体视觉；先复述需求卡，再给出 3 个明显不同的创意方向和交付计划。"
-success_definition: "事实零臆造、官方资产可验证、品牌色审计通过、审美验收有依据、交付包完整"
-
+success_definition: "事实零臆造、官方资产可验证、品牌色审计通过、局部改版范围外零变更、审美验收有依据、交付包完整"
