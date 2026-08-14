@@ -3,7 +3,7 @@
 [![Validate](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/validate.yml/badge.svg)](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/validate.yml)
 [![Pages](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/pages.yml/badge.svg)](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/pages.yml)
 
-面向厦门大学管理学院 ME 校友会喜乐会品牌宣传组的 Codex 工程。它把主视觉规范、活动口径、标准素材、创意路由和质量审计装进一个可复用的品牌 skill，并通过项目级 `AGENTS.md` 编排海报、电子门票、报名长图、社交媒体图片和屏幕画面。
+面向厦门大学管理学院 ME 校友会喜乐会品牌宣传组的 Codex 工程。它把主视觉规范、活动口径、推文与邀请函文案库、标准素材、创意路由和质量审计装进一个可复用的品牌 skill，并通过项目级 `AGENTS.md` 编排海报、电子门票、报名长图、社交媒体图片和屏幕画面。
 
 项目主页：<https://catmint103.github.io/xilehui-brand-agent/>
 
@@ -52,7 +52,7 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 ├── skills/create-xilehui-brand-poster/
 │   ├── SKILL.md                      # 品牌生产工作流
 │   ├── agents/openai.yaml            # Skill UI 元数据
-│   ├── references/                   # 品牌、活动、路由与审美规则
+│   ├── references/                   # 品牌、活动、文案知识、路由与审美规则
 │   ├── scripts/                      # 资产验真与配色审计
 │   └── assets/                       # 锁定的建筑、标志与纹样母版
 ├── inputs/                            # 组员放入文案、二维码和待审原稿
