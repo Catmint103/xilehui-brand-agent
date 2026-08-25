@@ -83,6 +83,21 @@ def verify_assets(_: argparse.Namespace) -> int:
         "mem25-anniversary-psd": (
             ASSET_DIR / "identity" / "masters" / "mem25-anniversary-badge-master.psd"
         ),
+        "xmu-official-seal-pdf": (
+            ASSET_DIR / "identity" / "masters" / "xmu-seal-official-vector.pdf"
+        ),
+        "xmu-official-wordmark-jiageng-pdf": (
+            ASSET_DIR
+            / "identity"
+            / "masters"
+            / "xmu-wordmark-jiageng-official-vector.pdf"
+        ),
+        "xmu-official-wordmark-luxun-pdf": (
+            ASSET_DIR
+            / "identity"
+            / "masters"
+            / "xmu-wordmark-luxun-official-vector.pdf"
+        ),
     }
     verified_sources = 0
     for source_name, source_path in locked_sources.items():

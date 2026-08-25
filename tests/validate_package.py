@@ -65,6 +65,9 @@ def check_assets() -> None:
             "som-triple-accreditation-ai": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.ai",
             "som-alumni-association-jpg": SKILL / "assets" / "identity" / "masters" / "som-alumni-association-lockup-source.jpg",
             "mem25-anniversary-psd": SKILL / "assets" / "identity" / "masters" / "mem25-anniversary-badge-master.psd",
+            "xmu-official-seal-pdf": SKILL / "assets" / "identity" / "masters" / "xmu-seal-official-vector.pdf",
+            "xmu-official-wordmark-jiageng-pdf": SKILL / "assets" / "identity" / "masters" / "xmu-wordmark-jiageng-official-vector.pdf",
+            "xmu-official-wordmark-luxun-pdf": SKILL / "assets" / "identity" / "masters" / "xmu-wordmark-luxun-official-vector.pdf",
         }.get(source_name)
         if source_path is None:
             continue

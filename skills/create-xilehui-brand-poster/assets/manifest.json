@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "sources": {
     "furong-pptx": "7bf7e1a09b19343ba664b83b75ffacf64cb3ba3ba7c74d06196de7477998b939",
     "chao-pptx": "13c38ec3c664b4e6c339a834ca867cb69af467f938888ac3263b0a49f12a2d59",
@@ -7,7 +7,10 @@
     "som-triple-accreditation-psd": "3a54c975a56787772dbdee65fada606a0f12956f7402402dd561e6d66b3c50f2",
     "som-triple-accreditation-ai": "503f54eb5ab8cec1e1bec660787db5afc7a4366feb79b9bc60ee589224abb45a",
     "som-alumni-association-jpg": "cef518137006c4d264271fdf6ca7d05b4ef69cba93c5d6ddd18fdf0a41167da4",
-    "mem25-anniversary-psd": "0a04509447d11935b66dec5d6f8678c1bbcc2e388d8494eee12fd305bd0e2788"
+    "mem25-anniversary-psd": "0a04509447d11935b66dec5d6f8678c1bbcc2e388d8494eee12fd305bd0e2788",
+    "xmu-official-seal-pdf": "66c40b7ae36fddcf12b48f26e2488f4f392cdc88888438ee4fc5c3e2cfb9a851",
+    "xmu-official-wordmark-jiageng-pdf": "b88ad384bce3be68e86137c58104d51098d23ac37a7b8ad8fd8439da5ccabea7",
+    "xmu-official-wordmark-luxun-pdf": "40afaa615e92940639dccf539bd9c8ba99ff38ee0ca2aedc7663cc990bf30d5b"
   },
   "files": {
     "architecture/xmu-01-statue-front.png": {"sha256": "9ad2af99099ba3ebcbecb9bc2726edb89df999f841766a05f56aa2869ec7b989", "width": 1773, "height": 2364, "mode": "RGB"},
