@@ -5,7 +5,9 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
+import tempfile
 
 from PIL import Image
 import yaml
@@ -13,6 +15,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "create-xilehui-brand-poster"
+TEMPLATE_SKILL = ROOT / "skills" / "xilehui-header-footer-template"
 
 
 def fail(message: str) -> None:
@@ -42,6 +45,69 @@ def check_skill_metadata() -> None:
     prompt = interface["interface"]["default_prompt"]
     if "$create-xilehui-brand-poster" not in prompt:
         fail("openai.yaml default_prompt must mention the skill")
+
+
+def check_header_footer_template_skill() -> None:
+    text = (TEMPLATE_SKILL / "SKILL.md").read_text(encoding="utf-8")
+    match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+    if not match:
+        fail("Template SKILL.md frontmatter is missing")
+    metadata = yaml.safe_load(match.group(1))
+    if metadata.get("name") != "xilehui-header-footer-template":
+        fail("Template skill name does not match its directory")
+
+    interface = yaml.safe_load((TEMPLATE_SKILL / "agents" / "openai.yaml").read_text(encoding="utf-8"))
+    prompt = interface["interface"]["default_prompt"]
+    if "$xilehui-header-footer-template" not in prompt:
+        fail("Template openai.yaml default_prompt must mention the skill")
+
+    config = json.loads((TEMPLATE_SKILL / "assets" / "default-config.json").read_text(encoding="utf-8"))
+    if config["canvas"] != {"width": 2048, "height": 3072, "header_height": 300, "footer_height": 292}:
+        fail("Template canvas defaults changed unexpectedly")
+    if set(config["assets"]["seal"]["variants"]) != {"deep-wine-red", "champagne-gold"}:
+        fail("Template seal variants are incomplete")
+    if set(config["assets"]["logo"]["variants"]) != {"transparent", "red-background"}:
+        fail("Template With ME logo variants are incomplete")
+
+    required_assets = (
+        "xmu-logo-deep-wine-red.pdf",
+        "xmu-logo-deep-wine-red.png",
+        "xmu-logo-champagne-gold.pdf",
+        "xmu-logo-champagne-gold.png",
+        "with-me-transparent.png",
+        "with-me-red-background.png",
+        "preview.png",
+    )
+    for name in required_assets:
+        if not (TEMPLATE_SKILL / "assets" / name).is_file():
+            fail(f"Template asset is missing: {name}")
+
+    with tempfile.TemporaryDirectory() as temporary:
+        subprocess.run(
+            [
+                sys.executable,
+                str(TEMPLATE_SKILL / "scripts" / "render_template.py"),
+                "--output-dir",
+                temporary,
+                "--set",
+                "assets.seal.variant=champagne-gold",
+                "--set",
+                "output.prefix=validation",
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+        )
+        overlay = Image.open(Path(temporary) / "validation-overlay.png").convert("RGBA")
+        if overlay.size != (2048, 3072):
+            fail(f"Unexpected template overlay size: {overlay.size}")
+        alpha = overlay.getchannel("A")
+        if alpha.crop((0, 300, 2048, 2780)).getextrema() != (0, 0):
+            fail("Template middle region is not fully transparent")
+        if alpha.crop((0, 0, 2048, 300)).getextrema() != (255, 255):
+            fail("Template header is not fully opaque")
+        if alpha.crop((0, 2780, 2048, 3072)).getextrema() != (255, 255):
+            fail("Template footer is not fully opaque")
 
 
 def check_assets() -> None:
@@ -189,6 +255,9 @@ def check_required_files() -> None:
         ROOT / "install.sh",
         ROOT / "README.md",
         ROOT / "ASSET-LICENSE.md",
+        TEMPLATE_SKILL / "references" / "configuration.md",
+        TEMPLATE_SKILL / "scripts" / "render_template.py",
+        TEMPLATE_SKILL / "assets" / "default-config.json",
         SKILL / "references" / "creative-routing.md",
         SKILL / "references" / "aesthetic-acceptance.md",
         SKILL / "references" / "copywriting-library.md",
@@ -206,6 +275,7 @@ def check_required_files() -> None:
 def main() -> int:
     checks = [
         check_skill_metadata,
+        check_header_footer_template_skill,
         check_assets,
         check_copywriting_knowledge,
         check_revision_freeze_policy,

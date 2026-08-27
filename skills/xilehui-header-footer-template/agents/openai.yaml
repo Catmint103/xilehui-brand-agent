@@ -1,0 +1,9 @@
+interface:
+  display_name: "喜乐会顶部页脚模板"
+  short_description: "参数化生成可共享的喜乐会海报顶部与底部透明模板层"
+  icon_large: "./assets/preview.png"
+  brand_color: "#4A1420"
+  default_prompt: "Use $xilehui-header-footer-template to create a configurable poster header and footer overlay."
+policy:
+  allow_implicit_invocation: true
+

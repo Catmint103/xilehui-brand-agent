@@ -3,7 +3,7 @@
 [![Validate](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/validate.yml/badge.svg)](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/validate.yml)
 [![Pages](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/pages.yml/badge.svg)](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/pages.yml)
 
-面向厦门大学管理学院 ME 校友会喜乐会品牌宣传组的 Codex 工程。它把主视觉规范、活动口径、推文与邀请函文案库、标准素材、管理学院校友会标识＋管院三证合一标识＋25MEM班徽三方联合署名、创意路由和质量审计装进一个可复用的品牌 skill，并通过项目级 `AGENTS.md` 编排海报、电子门票、报名长图、社交媒体图片和屏幕画面。
+面向厦门大学管理学院 ME 校友会喜乐会品牌宣传组的 Codex 工程。它把主视觉规范、活动口径、推文与邀请函文案库、标准素材、管理学院校友会标识＋管院三证合一标识＋25MEM班徽三方联合署名、创意路由和质量审计装进可复用的品牌 skill，并提供可调文字、字体、字号、颜色、校徽和 With ME Logo 位置的顶部／页脚参数化模板 skill。
 
 项目主页：<https://catmint103.github.io/xilehui-brand-agent/>
 
@@ -18,7 +18,7 @@ cd xilehui-brand-agent
 codex --cd .
 ```
 
-只安装品牌 skill：
+只安装指定 skill：
 
 ```bash
 curl -fsSL https://catmint103.github.io/xilehui-brand-agent/install.sh | bash
@@ -30,9 +30,13 @@ curl -fsSL https://catmint103.github.io/xilehui-brand-agent/install.sh | bash
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
   --repo Catmint103/xilehui-brand-agent \
   --path skills/create-xilehui-brand-poster
+
+python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
+  --repo Catmint103/xilehui-brand-agent \
+  --path skills/xilehui-header-footer-template
 ```
 
-安装后重新开始一个 Codex 任务，即可用 `$create-xilehui-brand-poster`。如果本机已有旧版本，使用 `./install.sh --force`；脚本会先备份旧目录，不会静默删除。
+安装后重新开始一个 Codex 任务，即可用 `$create-xilehui-brand-poster` 或 `$xilehui-header-footer-template`。如果本机已有旧版本，使用 `./install.sh --force`；脚本会先备份旧目录，不会静默删除。
 
 ## 第一次任务
 
@@ -55,6 +59,11 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 │   ├── references/                   # 品牌、活动、文案知识、联合署名、路由与审美规则
 │   ├── scripts/                      # 资产验真与配色审计
 │   └── assets/                       # 锁定的建筑、标志与纹样母版
+├── skills/xilehui-header-footer-template/
+│   ├── SKILL.md                      # 顶部与页脚参数化工作流
+│   ├── assets/default-config.json    # 文字、字号、颜色、坐标与资产版本
+│   ├── scripts/render_template.py    # 确定性生成顶部栏、底部栏与透明叠加层
+│   └── assets/                       # 两色校徽母版与两版 With ME Logo
 ├── inputs/                            # 组员放入文案、二维码和待审原稿
 ├── outputs/                           # Codex 任务输出，默认不提交
 ├── examples/                          # 演示提示词与验收量表
@@ -91,6 +100,7 @@ GitHub Actions 会在每次推送和 Pull Request 上运行同样的验证，并
 
 - 不从历史物料推断本届地点、票价、报名截止时间或二维码。
 - 不让生成模型重画校徽、建筑、二维码或最终文字。
+- 顶部／页脚模板 skill 只生成组件层，不自动构成可发布的完整海报。
 - 所有对外审核稿和发布稿同时保留管理学院校友会标识、管院三证合一标识与25MEM班徽，并使用标准三方联合署名资产。
 - 所有对外发布与业务事实变更必须由品牌宣传组组长确认。
 - 公开提交前检查 `inputs/` 与 `outputs/`，避免上传个人信息、内部二维码和未发布物料。
