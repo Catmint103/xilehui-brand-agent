@@ -5,6 +5,7 @@ REPOSITORY="Catmint103/xilehui-brand-agent"
 SKILL_NAMES=("create-xilehui-brand-poster" "xilehui-header-footer-template")
 FORCE=0
 TEMP_DIR=""
+VERIFY_DIR=""
 
 for argument in "$@"; do
   case "$argument" in
@@ -24,6 +25,9 @@ done
 cleanup() {
   if [ -n "$TEMP_DIR" ] && [ -d "$TEMP_DIR" ]; then
     rm -rf "$TEMP_DIR"
+  fi
+  if [ -n "$VERIFY_DIR" ] && [ -d "$VERIFY_DIR" ]; then
+    rm -rf "$VERIFY_DIR"
   fi
 }
 trap cleanup EXIT
@@ -81,7 +85,10 @@ done
 
 if command -v python3 >/dev/null 2>&1 && python3 -c "from PIL import Image" >/dev/null 2>&1; then
   python3 "${SKILLS_ROOT}/create-xilehui-brand-poster/scripts/brand_assets.py" verify
-  python3 "${SKILLS_ROOT}/xilehui-header-footer-template/scripts/render_template.py" --help >/dev/null
+  VERIFY_DIR="$(mktemp -d)"
+  python3 "${SKILLS_ROOT}/xilehui-header-footer-template/scripts/render_template.py" \
+    --output-dir "$VERIFY_DIR" \
+    --set output.prefix=install-verification >/dev/null
 else
   echo "Optional verification dependency missing. Run: python3 -m pip install Pillow"
 fi

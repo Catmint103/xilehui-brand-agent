@@ -6,4 +6,3 @@ interface:
   default_prompt: "Use $xilehui-header-footer-template to create a configurable poster header and footer overlay."
 policy:
   allow_implicit_invocation: true
-

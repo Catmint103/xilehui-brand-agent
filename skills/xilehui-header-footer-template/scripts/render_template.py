@@ -14,6 +14,9 @@ from PIL import Image, ImageChops, ImageColor, ImageDraw, ImageFont
 
 SKILL_ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_CONFIG = SKILL_ROOT / "assets" / "default-config.json"
+VALID_SCENARIOS = {"general", "peripheral-promo", "culture-shirt-promo"}
+FUNDRAISING_SCENARIOS = {"peripheral-promo", "culture-shirt-promo"}
+FUNDRAISING_NOTICE = "本品销售结余全部纳入本届活动经费"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -48,6 +51,31 @@ def apply_overrides(config: dict[str, Any], overrides: list[str]) -> None:
         set_dot_path(config, key.strip(), parse_value(raw.strip()))
 
 
+def apply_scenario_rules(config: dict[str, Any]) -> None:
+    scenario = str(config.get("scenario", "general"))
+    if scenario not in VALID_SCENARIOS:
+        raise ValueError(
+            f"Unknown scenario '{scenario}'. Available: {sorted(VALID_SCENARIOS)}"
+        )
+    if scenario in FUNDRAISING_SCENARIOS:
+        config["text"]["footer_line_2"]["content"] = FUNDRAISING_NOTICE
+
+
+def validate_output_prefix(raw: Any) -> str:
+    if not isinstance(raw, str):
+        raise ValueError("output.prefix must be a string.")
+    prefix = raw
+    if (
+        not prefix
+        or prefix in {".", ".."}
+        or "/" in prefix
+        or "\\" in prefix
+        or Path(prefix).is_absolute()
+    ):
+        raise ValueError("output.prefix must be a plain file-name prefix without path separators.")
+    return prefix
+
+
 def resolve_path(raw: str, config_dir: Path) -> Path:
     path = Path(raw).expanduser()
     candidates = [path] if path.is_absolute() else [config_dir / path, SKILL_ROOT / path]
@@ -63,10 +91,22 @@ def resolve_font(config: dict[str, Any], font_key: str, size: int, config_dir: P
         candidates = [candidates]
     if not candidates:
         raise ValueError(f"No font candidates configured for: {font_key}")
-    for raw in candidates:
+    for candidate in candidates:
+        if isinstance(candidate, str):
+            raw = candidate
+            index = 0
+        elif isinstance(candidate, dict):
+            raw = candidate.get("path")
+            index = candidate.get("index", 0)
+            if not isinstance(raw, str) or not raw:
+                raise ValueError(f"Font candidate for '{font_key}' must include a non-empty path.")
+            if not isinstance(index, int) or index < 0:
+                raise ValueError(f"Font candidate index for '{font_key}' must be a non-negative integer.")
+        else:
+            raise ValueError(f"Font candidate for '{font_key}' must be a path or an object.")
         try:
             path = resolve_path(raw, config_dir)
-            return ImageFont.truetype(str(path), size=size)
+            return ImageFont.truetype(str(path), size=size, index=index)
         except (FileNotFoundError, OSError):
             continue
     raise FileNotFoundError(
@@ -200,6 +240,11 @@ def validate_config(config: dict[str, Any]) -> None:
 
 
 def render(config: dict[str, Any], config_dir: Path, output_dir: Path) -> list[Path]:
+    config = copy.deepcopy(config)
+    apply_scenario_rules(config)
+    prefix = validate_output_prefix(
+        config.get("output", {}).get("prefix", "xilehui-header-footer")
+    )
     validate_config(config)
     canvas = config["canvas"]
     width = int(canvas["width"])
@@ -224,8 +269,16 @@ def render(config: dict[str, Any], config_dir: Path, output_dir: Path) -> list[P
     overlay.alpha_composite(header, (0, 0))
     overlay.alpha_composite(footer, (0, height - footer_height))
 
+    alpha = overlay.getchannel("A")
+    if alpha.crop((0, header_height, width, height - footer_height)).getextrema() != (0, 0):
+        raise RuntimeError("Transparent middle validation failed.")
+    if alpha.crop((0, 0, width, header_height)).getextrema() != (255, 255):
+        raise RuntimeError("Opaque header validation failed.")
+    if alpha.crop((0, height - footer_height, width, height)).getextrema() != (255, 255):
+        raise RuntimeError("Opaque footer validation failed.")
+
+    output_dir = output_dir.resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
-    prefix = str(config.get("output", {}).get("prefix", "xilehui-header-footer"))
     paths = [
         output_dir / f"{prefix}-header.png",
         output_dir / f"{prefix}-footer.png",
@@ -239,13 +292,6 @@ def render(config: dict[str, Any], config_dir: Path, output_dir: Path) -> list[P
         json.dump(config, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
 
-    alpha = overlay.getchannel("A")
-    if alpha.crop((0, header_height, width, height - footer_height)).getextrema() != (0, 0):
-        raise RuntimeError("Transparent middle validation failed.")
-    if alpha.crop((0, 0, width, header_height)).getextrema() != (255, 255):
-        raise RuntimeError("Opaque header validation failed.")
-    if alpha.crop((0, height - footer_height, width, height)).getextrema() != (255, 255):
-        raise RuntimeError("Opaque footer validation failed.")
     return paths
 
 

@@ -18,13 +18,13 @@ cd xilehui-brand-agent
 codex --cd .
 ```
 
-只安装指定 skill：
+直接安装两个 skill：
 
 ```bash
 curl -fsSL https://catmint103.github.io/xilehui-brand-agent/install.sh | bash
 ```
 
-也可以使用 Codex 自带的标准 skill installer：
+只安装指定 skill 时，使用 Codex 自带的标准 skill installer：
 
 ```bash
 python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/install-skill-from-github.py" \
@@ -62,6 +62,8 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 ├── skills/xilehui-header-footer-template/
 │   ├── SKILL.md                      # 顶部与页脚参数化工作流
 │   ├── assets/default-config.json    # 文字、字号、颜色、坐标与资产版本
+│   ├── assets/manifest.json          # 模板资产哈希、尺寸与来源映射
+│   ├── references/asset-provenance.md # 模板资产来源与许可边界
 │   ├── scripts/render_template.py    # 确定性生成顶部栏、底部栏与透明叠加层
 │   └── assets/                       # 两色校徽母版与两版 With ME Logo
 ├── inputs/                            # 组员放入文案、二维码和待审原稿
@@ -101,6 +103,7 @@ GitHub Actions 会在每次推送和 Pull Request 上运行同样的验证，并
 - 不从历史物料推断本届地点、票价、报名截止时间或二维码。
 - 不让生成模型重画校徽、建筑、二维码或最终文字。
 - 顶部／页脚模板 skill 只生成组件层，不自动构成可发布的完整海报。
+- “本品销售结余全部纳入本届活动经费”只在周边宣传与文化衫宣传场景固定显示，通用场景默认不带入。
 - 所有对外审核稿和发布稿同时保留管理学院校友会标识、管院三证合一标识与25MEM班徽，并使用标准三方联合署名资产。
 - 所有对外发布与业务事实变更必须由品牌宣传组组长确认。
 - 公开提交前检查 `inputs/` 与 `outputs/`，避免上传个人信息、内部二维码和未发布物料。

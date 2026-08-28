@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "sources": {
+    "repository-config": {
+      "origin": "Repository-maintained template configuration",
+      "permission_scope": "MIT-licensed configuration; embedded brand assets retain their separate rights"
+    },
+    "generated-preview": {
+      "origin": "Generated from default-config.json by scripts/render_template.py",
+      "permission_scope": "Preview use follows the permission scope of the embedded XMU and With ME assets"
+    },
+    "xmu-official-seal": {
+      "origin": "Xiamen University official identity download: https://www.xmu.edu.cn/sdgl/xxbs.htm",
+      "source_sha256": "66c40b7ae36fddcf12b48f26e2488f4f392cdc88888438ee4fc5c3e2cfb9a851",
+      "permission_scope": "Authorized Xiamen University and event use only; not relicensed by this repository"
+    },
+    "xilehui-with-me-logo": {
+      "origin": "Contributor-provided Xilehui event files in PR #6; upstream editable source is not archived",
+      "permission_scope": "Authorized Xilehui event use only; not an XMU university-level identity and not relicensed by this repository"
+    }
+  },
+  "files": {
+    "default-config.json": {
+      "sha256": "e62b18e397cfda2fe51af31b825edf42d7d15ce1f4ee147bc11fbf0f5dbc7cdc",
+      "kind": "configuration",
+      "source_id": "repository-config"
+    },
+    "preview.png": {
+      "sha256": "82a09340dc75379e63562a50520c54a9961b29b6f925de1428e40a17eeff9d08",
+      "width": 2048,
+      "height": 3072,
+      "mode": "RGBA",
+      "source_id": "generated-preview"
+    },
+    "with-me-red-background.png": {
+      "sha256": "90a4de0ef327645c7f96293e6f1d8174e45175d26c9d0e63e8632027b0e77433",
+      "width": 1373,
+      "height": 1146,
+      "mode": "RGB",
+      "source_id": "xilehui-with-me-logo"
+    },
+    "with-me-transparent.png": {
+      "sha256": "730148cd8c8a7b12867d28bf5467391a2c3a316be7a656c73408c81f960ff01c",
+      "width": 771,
+      "height": 652,
+      "mode": "RGBA",
+      "source_id": "xilehui-with-me-logo"
+    },
+    "xmu-logo-champagne-gold.pdf": {
+      "sha256": "17a96a60c850449b80f744d1a4ae7326168fcb4a026c18852d03a40ac5d23b47",
+      "kind": "vector-pdf",
+      "pages": 1,
+      "size_bytes": 129460,
+      "source_id": "xmu-official-seal"
+    },
+    "xmu-logo-champagne-gold.png": {
+      "sha256": "575f2227163e4ee5edbcd2ecad521e41e104b78cd0826fd0a69af17a77d9f0f6",
+      "width": 6667,
+      "height": 6667,
+      "mode": "RGB",
+      "source_id": "xmu-official-seal"
+    },
+    "xmu-logo-deep-wine-red.pdf": {
+      "sha256": "b6d524571b289fb55695c65136b719f16237194ef339375e7862cefb427c330b",
+      "kind": "vector-pdf",
+      "pages": 1,
+      "size_bytes": 129460,
+      "source_id": "xmu-official-seal"
+    },
+    "xmu-logo-deep-wine-red.png": {
+      "sha256": "8b4d536e758b6e0a2cecc99ac63fcf2b6f002e67157ab6774e9c90c1d18e1940",
+      "width": 6667,
+      "height": 6667,
+      "mode": "RGB",
+      "source_id": "xmu-official-seal"
+    }
+  }
+}

@@ -1,4 +1,5 @@
 {
+  "scenario": "general",
   "canvas": {"width": 2048, "height": 3072, "header_height": 300, "footer_height": 292},
   "colors": {
     "primary": "#4A1420",
@@ -10,11 +11,12 @@
   },
   "fonts": {
     "sans_bold": [
-      "C:/Windows/Fonts/msyhbd.ttc",
-      "C:/Windows/Fonts/msyh.ttc",
-      "/System/Library/Fonts/PingFang.ttc",
-      "/System/Library/Fonts/Hiragino Sans GB.ttc",
-      "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
+      {"path": "C:/Windows/Fonts/msyhbd.ttc", "index": 0},
+      {"path": "C:/Windows/Fonts/msyh.ttc", "index": 0},
+      {"path": "C:/Windows/Fonts/simhei.ttf", "index": 0},
+      {"path": "/System/Library/Fonts/Hiragino Sans GB.ttc", "index": 2},
+      {"path": "/System/Library/Fonts/STHeiti Medium.ttc", "index": 1},
+      {"path": "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc", "index": 0}
     ],
     "serif": [
       "C:/Windows/Fonts/times.ttf",
@@ -53,7 +55,7 @@
     "event": {"content": "第14届中秋喜乐会暨2026级迎新晚会", "x": 342, "y": 132, "font": "sans_bold", "size": 52, "tracking": 1, "color": "primary", "align": "left"},
     "english": {"content": "SCHOOL OF MANAGEMENT  XIAMEN UNIVERSITY", "x": 342, "y": 212, "font": "serif", "size": 27, "tracking": 2, "color": "accent", "align": "left"},
     "footer_line_1": {"content": "带走一份喜乐，也为相聚与启程添一份力", "x": 1024, "y": 78, "font": "sans_bold", "size": 40, "tracking": 2, "color": "primary", "align": "center"},
-    "footer_line_2": {"content": "本品销售结余全部纳入本届活动经费", "x": 1024, "y": 158, "font": "sans_bold", "size": 35, "tracking": 2, "color": "primary", "align": "center"}
+    "footer_line_2": {"content": "", "x": 1024, "y": 158, "font": "sans_bold", "size": 35, "tracking": 2, "color": "primary", "align": "center"}
   },
   "dividers": {
     "header": {"visible": true, "xy": [60, 290, 1988, 290], "width": 3, "color": "accent"},
