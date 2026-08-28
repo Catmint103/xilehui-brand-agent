@@ -13,6 +13,7 @@
       "C:/Windows/Fonts/msyhbd.ttc",
       "C:/Windows/Fonts/msyh.ttc",
       "/System/Library/Fonts/PingFang.ttc",
+      "/System/Library/Fonts/Hiragino Sans GB.ttc",
       "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
     ],
     "serif": [
@@ -60,4 +61,3 @@
   },
   "output": {"prefix": "xilehui-header-footer"}
 }
-
