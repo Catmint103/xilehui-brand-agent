@@ -5,7 +5,9 @@ import hashlib
 import json
 from pathlib import Path
 import re
+import subprocess
 import sys
+import tempfile
 
 from PIL import Image
 import yaml
@@ -13,6 +15,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 SKILL = ROOT / "skills" / "create-xilehui-brand-poster"
+TEMPLATE_SKILL = ROOT / "skills" / "xilehui-header-footer-template"
+FUNDRAISING_NOTICE = "本品销售结余全部纳入本届活动经费"
 
 
 def fail(message: str) -> None:
@@ -42,6 +46,161 @@ def check_skill_metadata() -> None:
     prompt = interface["interface"]["default_prompt"]
     if "$create-xilehui-brand-poster" not in prompt:
         fail("openai.yaml default_prompt must mention the skill")
+
+
+def run_template(output_dir: Path, *overrides: str, expect_success: bool = True) -> subprocess.CompletedProcess[str]:
+    command = [
+        sys.executable,
+        str(TEMPLATE_SKILL / "scripts" / "render_template.py"),
+        "--output-dir",
+        str(output_dir),
+    ]
+    for override in overrides:
+        command.extend(("--set", override))
+    result = subprocess.run(command, check=False, capture_output=True, text=True)
+    if expect_success and result.returncode != 0:
+        fail(
+            "Template render failed:\n"
+            f"stdout:\n{result.stdout}\n"
+            f"stderr:\n{result.stderr}"
+        )
+    if not expect_success and result.returncode == 0:
+        fail("Template render unexpectedly succeeded: " + " ".join(overrides))
+    return result
+
+
+def check_header_footer_template_skill() -> None:
+    text = (TEMPLATE_SKILL / "SKILL.md").read_text(encoding="utf-8")
+    match = re.match(r"^---\n(.*?)\n---\n", text, re.DOTALL)
+    if not match:
+        fail("Template SKILL.md frontmatter is missing")
+    metadata = yaml.safe_load(match.group(1))
+    if metadata.get("name") != "xilehui-header-footer-template":
+        fail("Template skill name does not match its directory")
+
+    interface = yaml.safe_load((TEMPLATE_SKILL / "agents" / "openai.yaml").read_text(encoding="utf-8"))
+    prompt = interface["interface"]["default_prompt"]
+    if "$xilehui-header-footer-template" not in prompt:
+        fail("Template openai.yaml default_prompt must mention the skill")
+
+    assets_root = TEMPLATE_SKILL / "assets"
+    config = json.loads((assets_root / "default-config.json").read_text(encoding="utf-8"))
+    if config.get("scenario") != "general":
+        fail("Template default scenario must be general")
+    if config["text"]["footer_line_2"]["content"]:
+        fail("General template must not include the fundraising notice by default")
+    if config["canvas"] != {"width": 2048, "height": 3072, "header_height": 300, "footer_height": 292}:
+        fail("Template canvas defaults changed unexpectedly")
+    if set(config["assets"]["seal"]["variants"]) != {"deep-wine-red", "champagne-gold"}:
+        fail("Template seal variants are incomplete")
+    if set(config["assets"]["logo"]["variants"]) != {"transparent", "red-background"}:
+        fail("Template With ME logo variants are incomplete")
+
+    font_candidates = config["fonts"]["sans_bold"]
+    candidate_by_path = {
+        candidate["path"] if isinstance(candidate, dict) else candidate: candidate
+        for candidate in font_candidates
+    }
+    windows_bold = candidate_by_path.get("C:/Windows/Fonts/msyhbd.ttc")
+    if not isinstance(windows_bold, dict) or windows_bold.get("index") != 0:
+        fail("Windows font chain must prefer Microsoft YaHei Bold")
+    mac_bold = candidate_by_path.get("/System/Library/Fonts/Hiragino Sans GB.ttc")
+    if not isinstance(mac_bold, dict) or mac_bold.get("index") != 2:
+        fail("macOS font chain must select Hiragino Sans GB W6")
+
+    manifest = json.loads((assets_root / "manifest.json").read_text(encoding="utf-8"))
+    actual_files = {
+        path.name
+        for path in assets_root.iterdir()
+        if path.is_file() and path.name != "manifest.json"
+    }
+    if set(manifest["files"]) != actual_files:
+        missing = sorted(actual_files - set(manifest["files"]))
+        stale = sorted(set(manifest["files"]) - actual_files)
+        fail(f"Template manifest mismatch; missing={missing}, stale={stale}")
+    for source_id, source in manifest.get("sources", {}).items():
+        if not source.get("origin") or not source.get("permission_scope"):
+            fail(f"Template asset source is incomplete: {source_id}")
+    official_master = SKILL / "assets" / "identity" / "masters" / "xmu-seal-official-vector.pdf"
+    if manifest["sources"]["xmu-official-seal"].get("source_sha256") != sha256(official_master):
+        fail("Template XMU seal lineage does not match the canonical official master")
+    for name, expected in manifest["files"].items():
+        path = assets_root / name
+        if sha256(path) != expected["sha256"]:
+            fail(f"Template asset hash mismatch: {name}")
+        if expected.get("size_bytes") is not None and path.stat().st_size != expected["size_bytes"]:
+            fail(f"Template asset file size mismatch: {name}")
+        if expected.get("source_id") not in manifest.get("sources", {}):
+            fail(f"Template asset source reference is missing: {name}")
+        if path.suffix.lower() == ".png":
+            with Image.open(path) as image:
+                if list(image.size) != [expected["width"], expected["height"]]:
+                    fail(f"Template asset dimensions mismatch: {name}")
+                if image.mode != expected["mode"]:
+                    fail(f"Template asset mode mismatch: {name}")
+        elif path.suffix.lower() == ".pdf":
+            if not path.read_bytes().startswith(b"%PDF-"):
+                fail(f"Template PDF signature is invalid: {name}")
+        elif path.suffix.lower() == ".json":
+            json.loads(path.read_text(encoding="utf-8"))
+
+    with tempfile.TemporaryDirectory() as temporary:
+        temporary_path = Path(temporary)
+        general_dir = temporary_path / "general"
+        run_template(
+            general_dir,
+            "assets.seal.variant=champagne-gold",
+            "output.prefix=validation",
+        )
+        effective = json.loads(
+            (general_dir / "validation-effective-config.json").read_text(encoding="utf-8")
+        )
+        if effective["scenario"] != "general" or effective["text"]["footer_line_2"]["content"]:
+            fail("General render unexpectedly includes the fundraising notice")
+
+        for scenario in ("peripheral-promo", "culture-shirt-promo"):
+            scenario_dir = temporary_path / scenario
+            run_template(
+                scenario_dir,
+                f"scenario={scenario}",
+                "text.footer_line_2.content=must-be-replaced",
+                "output.prefix=validation",
+            )
+            effective = json.loads(
+                (scenario_dir / "validation-effective-config.json").read_text(encoding="utf-8")
+            )
+            if effective["text"]["footer_line_2"]["content"] != FUNDRAISING_NOTICE:
+                fail(f"Fundraising notice is not fixed for scenario: {scenario}")
+
+        contained_dir = temporary_path / "contained"
+        escaped_result = run_template(
+            contained_dir,
+            "output.prefix=../escaped",
+            expect_success=False,
+        )
+        if "output.prefix" not in escaped_result.stderr:
+            fail("Unsafe output prefix did not fail for the expected reason")
+        if list(temporary_path.glob("escaped-*")):
+            fail("Template output escaped the requested output directory")
+
+        scenario_result = run_template(
+            temporary_path / "invalid-scenario",
+            "scenario=unapproved",
+            expect_success=False,
+        )
+        if "Unknown scenario" not in scenario_result.stderr:
+            fail("Invalid scenario did not fail for the expected reason")
+
+        overlay = Image.open(general_dir / "validation-overlay.png").convert("RGBA")
+        if overlay.size != (2048, 3072):
+            fail(f"Unexpected template overlay size: {overlay.size}")
+        alpha = overlay.getchannel("A")
+        if alpha.crop((0, 300, 2048, 2780)).getextrema() != (0, 0):
+            fail("Template middle region is not fully transparent")
+        if alpha.crop((0, 0, 2048, 300)).getextrema() != (255, 255):
+            fail("Template header is not fully opaque")
+        if alpha.crop((0, 2780, 2048, 3072)).getextrema() != (255, 255):
+            fail("Template footer is not fully opaque")
 
 
 def check_assets() -> None:
@@ -192,6 +351,10 @@ def check_required_files() -> None:
         ROOT / "install.sh",
         ROOT / "README.md",
         ROOT / "ASSET-LICENSE.md",
+        TEMPLATE_SKILL / "references" / "configuration.md",
+        TEMPLATE_SKILL / "references" / "asset-provenance.md",
+        TEMPLATE_SKILL / "scripts" / "render_template.py",
+        TEMPLATE_SKILL / "assets" / "default-config.json",
         SKILL / "references" / "creative-routing.md",
         SKILL / "references" / "aesthetic-acceptance.md",
         SKILL / "references" / "copywriting-library.md",
@@ -209,6 +372,7 @@ def check_required_files() -> None:
 def main() -> int:
     checks = [
         check_skill_metadata,
+        check_header_footer_template_skill,
         check_assets,
         check_copywriting_knowledge,
         check_revision_freeze_policy,
