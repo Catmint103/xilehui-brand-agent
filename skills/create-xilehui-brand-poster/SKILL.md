@@ -1,6 +1,6 @@
 ---
 name: create-xilehui-brand-poster
-description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会暨2026级迎新晚会 / With ME·同行”及后续喜乐会活动创建、改版和审核品牌海报、电子门票、报名长图、社交媒体图片、屏幕宣传画面与可编辑设计稿。在固定主视觉配色、准确活动口径、厦大官方元素以及管理学院校友会标识、管院三证合一标识与25MEM班徽三方联合署名规范下自由探索高级视觉风格，可结合静态画布、生成式图像、算法艺术、Figma 或系列主题系统；也用于检查品牌色、厦大元素、联合署名、层级、活动全称和二维码是否正确。
+description: 为厦门大学管理学院 ME校友大会“第14届中秋喜乐会暨2026级迎新晚会 / With ME·同行”及后续喜乐会活动创建、改版和审核品牌海报、电子门票、报名长图、社交媒体图片、屏幕宣传画面与可编辑设计稿。在固定主视觉配色、准确活动口径、厦大官方元素以及管院三证合一标识与25MEM班徽按需使用规范下自由探索高级视觉风格，可结合静态画布、生成式图像、算法艺术、Figma 或系列主题系统；也用于检查品牌色、厦大元素、联合署名、层级、活动全称和二维码是否正确。
 ---
 
 # 喜乐会品牌宣传物料
@@ -13,7 +13,7 @@ description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会�
 2. 为当前第14届中秋喜乐会暨2026级迎新晚会制作物料时，阅读 [references/current-campaign.md](references/current-campaign.md)，原样使用其中已确认的信息。
 3. 任务涉及推文、邀请函、活动长文案、标题或语气提炼时，阅读 [references/copywriting-library.md](references/copywriting-library.md)。它只提供用户给定的写作素材；与当前活动事实或标准写法冲突时，以用户最新输入、`current-campaign.md` 和 `brand-system.md` 为准。
 4. 阅读 [references/asset-catalog.md](references/asset-catalog.md)，建筑、凤凰花、校徽与机构标识只从 `assets/` 选材。
-5. 只要成品准备对外发布，阅读 [references/signature-lockup.md](references/signature-lockup.md)，预留管理学院校友会标识、管院三证合一标识与25MEM班徽的三方联合署名区。
+5. 阅读 [references/signature-lockup.md](references/signature-lockup.md)：校友会 Logo 与含它的旧三方联合署名已停用；管院三证合一标识与25MEM班徽仅在当前请求明确要求时使用。
 6. 阅读 [references/creative-routing.md](references/creative-routing.md)，按交付物选择最少且合适的辅助 skill。
 7. 根据成品比例阅读 [references/layout-patterns.md](references/layout-patterns.md)；把其中模式视为起点，不视为模板。
 8. 阅读 [references/aesthetic-acceptance.md](references/aesthetic-acceptance.md)，用通用完成度标准验收。历史示例仅用于观察品质，不要求构图或材质相似。
@@ -28,7 +28,8 @@ description: 为厦门大学管理学院 ME校友会“第14届中秋喜乐会�
 - 不让图像模型生成校徽、建筑、二维码或文字。需要 AI 纹理时只生成无文字、无建筑、无标志的背景材质，再叠加标准资产与真实文字。
 - 保持“同行”两个字同字号、同高度、同基线；让中文与 `With ME` 的视觉高度协调。
 - 使用真实字体排版文字。不得把模型生成的乱码文字作为最终稿。
-- 所有对外审核稿和发布稿必须同时出现管理学院校友会完整标识、管院三证合一完整标识与25MEM班徽。优先使用标准三方联合署名资产，保持原色、比例、顺序、内部间距和安全空间；不得省略、拆分认证标志、重排或特效化。
+- 正式官方名称为两行：`厦门大学管理学院 ME校友大会` / `第14届中秋喜乐会暨2026级迎新晚会`，具体排版口径见 `current-campaign.md`。
+- 校友会 Logo 已从官方资产库移除，不得使用单独标识、含它的旧三方联合署名或从历史物料中提取复用。管院三证合一标识与25MEM班徽默认不出现、不预留空位；用户明确要求时只放所点名的标识，并保持原色、比例、内部关系和安全空间。
 
 ## 生成流程
 
@@ -87,11 +88,11 @@ python scripts/brand_assets.py tint \
 
 脚本只从原始像素生成透明单色层，不改变轮廓、比例和尺寸。
 
-### 5. 建立对外联合署名区
+### 5. 按需建立署名区
 
-外宣物料先在网格中预留独立署名区，再使用 `assets/identity/xilehui-publicity-signature-light.png` 或 `assets/identity/xilehui-publicity-signature-dark.png`。默认放在底部并低于主要信息层级。深色信息型版面优先建立与正文或表格网格对齐的通栏石灰米承托区，再放置浅底联合署名；不得把承托区做成悬浮的圆角 Logo 卡片。只有画布无法容纳通栏页脚时，才使用紧凑深底承托版；只有比例确实不适合横条时，才分别放置三个标识，但仍须组成同一视觉组。
+只有当前请求明确要求管院标识、25MEM班徽或联合署名时，才从 `assets/identity/` 选择相应资产。只点名单个标识时用单体；明确要求整组时，用管院三证合一标识与25MEM班徽的已确认组合：横版与宽幅页脚用 `xilehui-signature-horizontal-*.png`，手机竖版与窄幅物料优先 `xilehui-signature-stacked-*.png`。透明／石灰米底选择、精确参数和确定性复现见 [references/signature-layouts.md](references/signature-layouts.md)。不得补回已移除的校友会 Logo 或旧三方组合。
 
-在目标手机尺寸检查一次：联合署名不应压过主标题、日期、价格、表格或二维码，也不能小到校友会文字、班徽和三项认证只剩无意义色块。具体尺度、留白和颜色例外见 `signature-lockup.md`。
+署名放在低于主要信息的独立区域，保持原色、比例和安全空间。深色信息型版面使用与主网格对齐的通栏石灰米承托区，不做悬浮圆角 Logo 卡片。未要求署名时不预留空位。在目标手机尺寸检查已启用标识的可辨识度，详见 `signature-lockup.md`。
 
 ### 6. 先做构图，再做媒介与材质
 
@@ -131,7 +132,7 @@ python scripts/brand_assets.py tint \
 2. 运行 `python scripts/palette_audit.py <final.png> --mode dark`；浅米底版改用 `--mode light`。
 3. 以原尺寸和 25% 缩略图分别检查主次、留白、文字换行、建筑可见度和二维码静区。
 4. 确认没有建筑变形、偶然空洞、无意拥挤、图文粘连、辅助信息抢主视觉或金色面积失控等问题；非常规留白与叠合可以保留，但必须服务清楚的视觉命题。
-5. 对外物料确认联合署名完整、只出现一次、未变形、未改色，且在原尺寸、25% 缩略图和目标手机尺寸可辨识；深底必须有完整米色承托，信息型版面优先采用与主网格对齐的通栏页脚，不做悬浮圆角卡片。
+5. 确认成品中没有校友会 Logo 或旧三方联合署名。未明确要求时不添加机构署名；已启用的标识只出现一次，未变形、未改色，在原尺寸、25% 缩略图和目标手机尺寸可辨识；深底使用与主网格对齐的完整石灰米承托区。
 6. 确认日期、地点、价格和报名文案来自用户，不从旧稿自动沿用。
 7. 依据 `aesthetic-acceptance.md` 检查视觉命题、层级、重心、间距、材质和完成度。可与历史示例并排观察精细度，但不得以相似度作为通过条件。
 
@@ -141,13 +142,16 @@ python scripts/brand_assets.py tint \
 
 - `assets/architecture/`：两套官方 PPT 共同使用的建筑母版。
 - `assets/motifs/`：凤凰花线纹和压纹母版。
-- `assets/identity/`：厦大校徽、标准校名组合标志、管理学院校友会标识、管院三证合一标识、25MEM班徽和浅／深底三方联合署名资产。
+- `assets/identity/`：厦大校徽、标准校名组合标志、管院三证合一标识和25MEM班徽；不含校友会 Logo 或旧三方联合署名。
 - `assets/examples/horizontal-aesthetic-standard-3840x2160.png`：历史高完成度横版样例，只参考精细度、品牌色与信息清晰度。
 - `assets/examples/portrait-electronic-ticket.png`：历史竖版样例，只作一种构图思路。
 - `references/creative-routing.md`：静态画布、生图、算法艺术、Figma 与系列主题的辅助 skill 路由。
 - `references/aesthetic-acceptance.md`：不绑定具体风格的通用审美与完成度验收规则。
 - `references/current-campaign.md`：当前第14届中秋喜乐会暨2026级迎新晚会已确认的活动全称、日期和主题口径。
 - `references/copywriting-library.md`：用户提供的推文与邀请函原文、来源哈希、适用场景和事实冲突处理规则。
-- `references/signature-lockup.md`：所有对外物料必须遵循的联合署名层级、尺度、留白、颜色例外与手机端验收规则。
+- `references/signature-lockup.md`：校友会 Logo 停用、其余机构标识按需启用，以及署名层级、留白和验收规则。
+- `references/signature-layouts.md`：确认后的横排、叠排及顶部身份栏参数，Canva／Figma 复现方法与应用预览。
+- `assets/examples/signature-layouts/`：两种署名排版、顶部身份栏及手机尺寸检查图；仅作布局示意。
 - `scripts/brand_assets.py`：列出、验真并转换标准线稿。
+- `scripts/render_signature.py`：从现行单体生成横排／叠排、透明／石灰米底的四款署名，不重绘标识。
 - `scripts/palette_audit.py`：审计成稿与主视觉色系的接近程度。

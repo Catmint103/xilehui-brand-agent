@@ -1,6 +1,8 @@
 # 参数说明
 
-所有尺寸和坐标均以像素计，默认基准画布为 2048×3072。
+所有尺寸和坐标均以像素计，默认基准画布为 2048×3072。正式名称由 `text.organization.content` 的“厦门大学管理学院 ME校友大会”与 `text.event.content` 的“第14届中秋喜乐会暨2026级迎新晚会”组成两行。旧配置中的“ME校友会”须同步更新。
+
+2026年10月15日确认的顶部排版：两行名称均为 58 px，字距 1 px，在 x=1024 居中，y 分别为 52 与 138；校徽框为 `[88,58,180,180]`，With ME 框为 `[1780,65,180,170]`，均等比适配。英文说明留空，分隔线为 `[88,284,1960,284]`、2 px。更换字体后检查实际文字边界与左右标识的间距。
 
 ## 快速使用
 
@@ -71,7 +73,7 @@ python scripts/render_template.py --output-dir outputs `
 
 校徽可选 `deep-wine-red` 或 `champagne-gold`；With ME Logo 可选 `transparent` 或 `red-background`。
 
-要使用自己的文件，把 `custom_path` 改为绝对路径，或改为相对于配置文件／Skill 根目录的相对路径。`custom_path` 非空时优先于 `variant`。
+要使用自己的文件，把 `custom_path` 改为绝对路径，或改为相对于配置文件／Skill 根目录的相对路径。`custom_path` 非空时优先于 `variant`。不得传入已停用的校友会 Logo 或含它的旧三方组合。
 
 `tint` 为 `null` 时保留原色；填入 `#RRGGBB` 时按原透明度转为单色。红底 Logo 不建议使用 `tint`，因为它本身含不透明底色。
 

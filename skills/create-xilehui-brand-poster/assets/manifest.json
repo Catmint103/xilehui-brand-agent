@@ -1,12 +1,11 @@
 {
-  "version": 4,
+  "version": 6,
   "sources": {
     "furong-pptx": "7bf7e1a09b19343ba664b83b75ffacf64cb3ba3ba7c74d06196de7477998b939",
     "chao-pptx": "13c38ec3c664b4e6c339a834ca867cb69af467f938888ac3263b0a49f12a2d59",
     "main-visual-pdf": "28d1678632380ddc4d965329f1e157f361d27bea9a3f5600369107b05b58ddf7",
     "som-triple-accreditation-psd": "3a54c975a56787772dbdee65fada606a0f12956f7402402dd561e6d66b3c50f2",
     "som-triple-accreditation-ai": "503f54eb5ab8cec1e1bec660787db5afc7a4366feb79b9bc60ee589224abb45a",
-    "som-alumni-association-jpg": "cef518137006c4d264271fdf6ca7d05b4ef69cba93c5d6ddd18fdf0a41167da4",
     "mem25-anniversary-psd": "0a04509447d11935b66dec5d6f8678c1bbcc2e388d8494eee12fd305bd0e2788",
     "xmu-official-seal-pdf": "66c40b7ae36fddcf12b48f26e2488f4f392cdc88888438ee4fc5c3e2cfb9a851",
     "xmu-official-wordmark-jiageng-pdf": "b88ad384bce3be68e86137c58104d51098d23ac37a7b8ad8fd8439da5ccabea7",
@@ -25,12 +24,22 @@
     "motifs/phoenix-flower-emboss.png": {"sha256": "f49fe818baa32a8040ad9f3b85b1ea34255bcfdcf12df86af5c162d567ef19b1", "width": 2000, "height": 2000, "mode": "RGBA"},
     "identity/xmu-lockup.png": {"sha256": "c80dbad6a02f0489584d76eb660062709169602559a1bbdb5e57d4c05331904e", "width": 648, "height": 180, "mode": "RGBA"},
     "identity/xmu-seal.png": {"sha256": "9deb24e9e473488602fedf5501ca45ae92c8d1ad65b2610675abafa5b91d23c3", "width": 278, "height": 278, "mode": "RGBA"},
-    "identity/som-alumni-association-lockup-color.png": {"sha256": "86a88c3c866416c436b13a282bdcf0db388532b73402e4385b9e0919defc1434", "width": 448, "height": 504, "mode": "RGBA"},
     "identity/som-triple-accreditation-lockup-color.png": {"sha256": "08752b5c11b5e8e6a52d63467af95aae5e61facc5103fe948a18391d6606b1b7", "width": 1806, "height": 160, "mode": "RGBA"},
     "identity/mem25-anniversary-badge-color.png": {"sha256": "18d44a8721522a98591419d2e5a8d025aa47339dbe44edf3cd8f20096e6bed8f", "width": 3333, "height": 3333, "mode": "RGBA"},
-    "identity/xilehui-publicity-signature-light.png": {"sha256": "46c511bddac0d8cbee2b8b26e434200ba86f1b0860a4d44d0a816f18bc8c76b0", "width": 2800, "height": 420, "mode": "RGBA"},
-    "identity/xilehui-publicity-signature-dark.png": {"sha256": "02dbfbfa7122f57fdb6f6ff2979b8ab59321492ac958b6b5d48b92668321cca4", "width": 2800, "height": 420, "mode": "RGBA"},
     "examples/horizontal-aesthetic-standard-3840x2160.png": {"sha256": "5342efff665f903c0d8a2f0867e46fd8f889c2507c3203fa2fa3a4add45a455a", "width": 3840, "height": 2160, "mode": "RGB"},
-    "examples/portrait-electronic-ticket.png": {"sha256": "59d75c2e8b4d979a6feff704e7bb673b3ad0b25fca9742a2bf132a237b3ae4dc", "width": 2160, "height": 3600, "mode": "RGB"}
+    "examples/portrait-electronic-ticket.png": {"sha256": "59d75c2e8b4d979a6feff704e7bb673b3ad0b25fca9742a2bf132a237b3ae4dc", "width": 2160, "height": 3600, "mode": "RGB"},
+    "identity/xilehui-signature-horizontal-transparent.png": {"sha256": "7473d77032363d897977708d2a0aefa8b02fc0ffff3cd401d5bfba3b34f0f6af", "width": 2400, "height": 352, "mode": "RGBA"},
+    "identity/xilehui-signature-horizontal-cream.png": {"sha256": "747424744c961f180bd1411c1f0bb50b8836c8b5e9d47f9948671be9bcfec3ef", "width": 2400, "height": 352, "mode": "RGBA"},
+    "identity/xilehui-signature-stacked-transparent.png": {"sha256": "d6b3e3fad450d0095b0381abc12dcf13fb23323900730cd8fe4c72838bc9ca82", "width": 1200, "height": 356, "mode": "RGBA"},
+    "identity/xilehui-signature-stacked-cream.png": {"sha256": "2c4d4354a2d284bd2846bf0c98c96166a27a2ee9861956021f66cf248e375b60", "width": 1200, "height": 356, "mode": "RGBA"},
+    "examples/signature-layouts/signature-horizontal-mobile.png": {"sha256": "84c1d5218d7eb6db5595144f0d51488703cde8788678fd05975dd986d2e59e4b", "width": 375, "height": 55, "mode": "RGBA"},
+    "examples/signature-layouts/signature-stacked-mobile.png": {"sha256": "550c5d2fa90767e8d295e07e96b3f84e3496fb71ab71a26f4e7a3e9d7eb972a1", "width": 375, "height": 111, "mode": "RGBA"},
+    "examples/signature-layouts/layout-comparison.png": {"sha256": "183f2e16b156a69066c0b8928c900df6ee30df784cc9ba121c74f44181cced46", "width": 2400, "height": 1830, "mode": "RGB"},
+    "examples/signature-layouts/header-preview.png": {"sha256": "1ff49b89e34609c2da96926e26449934db06df4a39ccb21670862c433dec64d2", "width": 2048, "height": 300, "mode": "RGBA"},
+    "examples/signature-layouts/application-horizontal.png": {"sha256": "db875759a2029952d084a01a62cf6bed1f663e5ad122c0cf30a18ff65ebf9af5", "width": 2048, "height": 2560, "mode": "RGB"},
+    "examples/signature-layouts/application-stacked.png": {"sha256": "cc0c505ef2ff27aa5c429b4d8c943b559bb55158c317fa629d6a13060b454f12", "width": 2048, "height": 3072, "mode": "RGB"},
+    "examples/signature-layouts/application-horizontal-mobile.png": {"sha256": "5fc1bc9473199eba2a2620123dd0eae19befe7f7b6aef84899597c8c9baeccee", "width": 375, "height": 469, "mode": "RGB"},
+    "examples/signature-layouts/application-stacked-mobile.png": {"sha256": "020e49e9e019ec155ea2b2e70c0952695e895069a53a5c3dc11bd70010703a94", "width": 375, "height": 562, "mode": "RGB"},
+    "examples/signature-layouts/application-comparison.png": {"sha256": "e283b0452101b49de72ead0f33666f26b08ba7d95e6712a176955361b2f612a1", "width": 2400, "height": 2120, "mode": "RGB"}
   }
 }

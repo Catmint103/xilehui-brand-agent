@@ -3,7 +3,7 @@ english_name: "JoyBrand Agent"
 version: "1.0"
 platform: "Codex workspace agent"
 entrypoint: "./AGENTS.md"
-owner_role: "厦门大学管理学院 ME校友会品牌宣传组组长"
+owner_role: "厦门大学管理学院 ME校友大会品牌宣传组组长"
 primary_goal: "把喜乐会视觉需求转化为品牌一致、信息准确、可审核且可发布的系列物料"
 skill_dependencies:
   - "create-xilehui-brand-poster"
