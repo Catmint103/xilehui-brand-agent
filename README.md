@@ -3,7 +3,7 @@
 [![Validate](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/validate.yml/badge.svg)](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/validate.yml)
 [![Pages](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/pages.yml/badge.svg)](https://github.com/Catmint103/xilehui-brand-agent/actions/workflows/pages.yml)
 
-面向厦门大学管理学院 ME 校友会喜乐会品牌宣传组的 Codex 工程。它把主视觉规范、活动口径、推文与邀请函文案库、标准素材、管理学院校友会标识＋管院三证合一标识＋25MEM班徽三方联合署名、创意路由和质量审计装进可复用的品牌 skill，并提供可调文字、字体、字号、颜色、校徽和 With ME Logo 位置的顶部／页脚参数化模板 skill。
+面向厦门大学管理学院 ME校友大会喜乐会品牌宣传组的 Codex 工程。它把主视觉规范、活动口径、推文与邀请函文案库、标准素材、管院三证合一标识与25MEM班徽按需使用规则、创意路由和质量审计装进可复用的品牌 skill，并提供可调文字、字体、字号、颜色、校徽和 With ME Logo 位置的顶部／页脚参数化模板 skill。
 
 项目主页：<https://catmint103.github.io/xilehui-brand-agent/>
 
@@ -104,6 +104,7 @@ GitHub Actions 会在每次推送和 Pull Request 上运行同样的验证，并
 - 不让生成模型重画校徽、建筑、二维码或最终文字。
 - 顶部／页脚模板 skill 只生成组件层，不自动构成可发布的完整海报。
 - “本品销售结余全部纳入本届活动经费”只在周边宣传与文化衫宣传场景固定显示，通用场景默认不带入。
-- 所有对外审核稿和发布稿同时保留管理学院校友会标识、管院三证合一标识与25MEM班徽，并使用标准三方联合署名资产。
+- 正式名称为“厦门大学管理学院 ME校友大会”与“第14届中秋喜乐会暨2026级迎新晚会”两行。
+- 校友会 Logo、源图及旧三方联合署名已从官方资产库撤下；管院三证合一标识与25MEM班徽仅在明确要求时使用。
 - 所有对外发布与业务事实变更必须由品牌宣传组组长确认。
 - 公开提交前检查 `inputs/` 与 `outputs/`，避免上传个人信息、内部二维码和未发布物料。

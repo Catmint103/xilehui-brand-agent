@@ -87,6 +87,10 @@ def check_header_footer_template_skill() -> None:
     config = json.loads((assets_root / "default-config.json").read_text(encoding="utf-8"))
     if config.get("scenario") != "general":
         fail("Template default scenario must be general")
+    expected_name = ("厦门大学管理学院 ME校友大会", "第14届中秋喜乐会暨2026级迎新晚会")
+    actual_name = tuple(config["text"][key]["content"] for key in ("organization", "event"))
+    if actual_name != expected_name:
+        fail("Template does not use the current two-line official event name")
     if config["text"]["footer_line_2"]["content"]:
         fail("General template must not include the fundraising notice by default")
     if config["canvas"] != {"width": 2048, "height": 3072, "header_height": 300, "footer_height": 292}:
@@ -158,6 +162,9 @@ def check_header_footer_template_skill() -> None:
         if effective["scenario"] != "general" or effective["text"]["footer_line_2"]["content"]:
             fail("General render unexpectedly includes the fundraising notice")
 
+        if tuple(effective["text"][key]["content"] for key in ("organization", "event")) != expected_name:
+            fail("Rendered template changed the current official event name")
+
         for scenario in ("peripheral-promo", "culture-shirt-promo"):
             scenario_dir = temporary_path / scenario
             run_template(
@@ -222,7 +229,6 @@ def check_assets() -> None:
         source_path = {
             "som-triple-accreditation-psd": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.psd",
             "som-triple-accreditation-ai": SKILL / "assets" / "identity" / "masters" / "som-triple-accreditation-lockup-master.ai",
-            "som-alumni-association-jpg": SKILL / "assets" / "identity" / "masters" / "som-alumni-association-lockup-source.jpg",
             "mem25-anniversary-psd": SKILL / "assets" / "identity" / "masters" / "mem25-anniversary-badge-master.psd",
             "xmu-official-seal-pdf": SKILL / "assets" / "identity" / "masters" / "xmu-seal-official-vector.pdf",
             "xmu-official-wordmark-jiageng-pdf": SKILL / "assets" / "identity" / "masters" / "xmu-wordmark-jiageng-official-vector.pdf",
@@ -275,50 +281,59 @@ def check_revision_freeze_policy() -> None:
                 fail(f"Revision freeze policy is incomplete in {path.relative_to(ROOT)}: {phrase}")
 
 
-def check_signature_composition() -> None:
+def check_current_identity_assets() -> None:
     identity = SKILL / "assets" / "identity"
     required = {
-        "som-alumni-association-lockup-color.png",
         "som-triple-accreditation-lockup-color.png",
         "mem25-anniversary-badge-color.png",
+    }
+    retired = {
+        "som-alumni-association-lockup-color.png",
         "xilehui-publicity-signature-light.png",
         "xilehui-publicity-signature-dark.png",
+        "masters/som-alumni-association-lockup-source.jpg",
     }
     manifest = json.loads((SKILL / "assets" / "manifest.json").read_text(encoding="utf-8"))
-    missing = sorted(
-        name for name in required if f"identity/{name}" not in manifest["files"]
-    )
+    missing = sorted(name for name in required if f"identity/{name}" not in manifest["files"])
     if missing:
-        fail("Required publicity identity assets missing from manifest: " + ", ".join(missing))
+        fail("Current identity assets missing from manifest: " + ", ".join(missing))
+    for name in retired:
+        if (identity / name).exists() or f"identity/{name}" in manifest["files"]:
+            fail("Retired identity asset is still distributed: " + name)
+    if "som-alumni-association-jpg" in manifest["sources"]:
+        fail("Retired alumni source is still active in the manifest")
 
-    light = Image.open(identity / "xilehui-publicity-signature-light.png").convert("RGBA")
-    if light.size != (2800, 420):
-        fail(f"Unexpected three-party signature size: {light.size}")
-    zones = {
-        "alumni association": (0, 0, 600, 420),
-        "triple accreditation": (600, 0, 2400, 420),
-        "25MEM": (2400, 0, 2800, 420),
-    }
-    for label, box in zones.items():
-        if light.crop(box).getchannel("A").getbbox() is None:
-            fail(f"Three-party signature omits {label} zone")
-
-    alumni = light.crop(zones["alumni association"])
-    alumni_pixels = (
-        alumni.get_flattened_data() if hasattr(alumni, "get_flattened_data") else alumni.getdata()
-    )
-    red_pixels = sum(
-        1
-        for red, green, blue, alpha in alumni_pixels
-        if alpha > 100 and red > 90 and red > green * 1.4 and red > blue * 1.2
-    )
-    if red_pixels < 1200:
-        fail("Alumni association red phoenix mark is absent or too faint")
-
-    rules = (SKILL / "references" / "signature-lockup.md").read_text(encoding="utf-8")
-    for phrase in ("管理学院校友会", "三证合一", "25MEM", "通栏石灰米页脚承托区"):
-        if phrase not in rules:
-            fail(f"Signature rule omits required identity: {phrase}")
+    with tempfile.TemporaryDirectory() as temporary:
+        output = Path(temporary) / "identity"
+        masters = identity / "masters"
+        result = subprocess.run(
+            [
+                sys.executable, str(ROOT / "scripts" / "build_co_brand_assets.py"),
+                "--som-psd", str(masters / "som-triple-accreditation-lockup-master.psd"),
+                "--som-ai", str(masters / "som-triple-accreditation-lockup-master.ai"),
+                "--mem-psd", str(masters / "mem25-anniversary-badge-master.psd"),
+                "--output-dir", str(output),
+            ],
+            capture_output=True, text=True, check=False,
+        )
+        if result.returncode:
+            fail("Current identity export failed: " + result.stderr)
+        if {path.name for path in output.glob("*.png")} != required:
+            fail("Identity builder emitted unexpected or retired logos")
+        for name in required:
+            with Image.open(output / name) as actual, Image.open(identity / name) as expected:
+                if actual.size != expected.size or actual.convert("RGBA").tobytes() != expected.convert("RGBA").tobytes():
+                    fail("Identity builder changed the approved pixels: " + name)
+        expected_masters = {
+            "som-triple-accreditation-lockup-master.psd",
+            "som-triple-accreditation-lockup-master.ai",
+            "mem25-anniversary-badge-master.psd",
+        }
+        if {path.name for path in (output / "masters").iterdir()} != expected_masters:
+            fail("Identity builder archived unexpected source masters")
+        for name in expected_masters:
+            if sha256(output / "masters" / name) != sha256(masters / name):
+                fail("Identity builder changed a source master: " + name)
 
 
 def check_portability() -> None:
@@ -376,7 +391,7 @@ def main() -> int:
         check_assets,
         check_copywriting_knowledge,
         check_revision_freeze_policy,
-        check_signature_composition,
+        check_current_identity_assets,
         check_portability,
         check_required_files,
     ]

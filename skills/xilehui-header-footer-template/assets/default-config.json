@@ -51,7 +51,7 @@
     }
   },
   "text": {
-    "organization": {"content": "厦门大学管理学院 ME校友会", "x": 342, "y": 58, "font": "sans_bold", "size": 58, "tracking": 2, "color": "primary", "align": "left"},
+    "organization": {"content": "厦门大学管理学院 ME校友大会", "x": 342, "y": 58, "font": "sans_bold", "size": 58, "tracking": 2, "color": "primary", "align": "left"},
     "event": {"content": "第14届中秋喜乐会暨2026级迎新晚会", "x": 342, "y": 132, "font": "sans_bold", "size": 52, "tracking": 1, "color": "primary", "align": "left"},
     "english": {"content": "SCHOOL OF MANAGEMENT  XIAMEN UNIVERSITY", "x": 342, "y": 212, "font": "serif", "size": 27, "tracking": 2, "color": "accent", "align": "left"},
     "footer_line_1": {"content": "带走一份喜乐，也为相聚与启程添一份力", "x": 1024, "y": 78, "font": "sans_bold", "size": 40, "tracking": 2, "color": "primary", "align": "center"},
