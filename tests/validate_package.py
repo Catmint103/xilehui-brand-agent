@@ -336,6 +336,38 @@ def check_current_identity_assets() -> None:
                 fail("Identity builder changed a source master: " + name)
 
 
+def check_signature_layouts() -> None:
+    """Rebuild every approved variant from current sources, without font dependencies."""
+    script = SKILL / "scripts" / "render_signature.py"
+    identity = SKILL / "assets" / "identity"
+    with tempfile.TemporaryDirectory() as temporary:
+        for layout in ("horizontal", "stacked"):
+            for surface in ("transparent", "cream"):
+                name = f"xilehui-signature-{layout}-{surface}.png"
+                output = Path(temporary) / name
+                result = subprocess.run(
+                    [sys.executable, str(script), "--layout", layout, "--surface", surface,
+                     "--output", str(output)],
+                    capture_output=True, text=True, check=False,
+                )
+                if result.returncode:
+                    fail("Signature render failed: " + result.stderr)
+                with Image.open(output) as actual, Image.open(identity / name) as expected:
+                    if (actual.mode != expected.mode or actual.size != expected.size
+                            or actual.tobytes() != expected.tobytes()):
+                        fail("Signature render differs from approved pixels: " + name)
+
+        # Even --force must not allow the renderer to alter its locked source library.
+        source = identity / "som-triple-accreditation-lockup-color.png"
+        before = sha256(source)
+        result = subprocess.run(
+            [sys.executable, str(script), "--layout", "horizontal", "--output", str(source), "--force"],
+            capture_output=True, text=True, check=False,
+        )
+        if result.returncode == 0 or "locked asset library" not in result.stderr or sha256(source) != before:
+            fail("Signature renderer did not protect the locked source asset")
+
+
 def check_portability() -> None:
     forbidden = (
         "/" + "Users" + "/",
@@ -374,7 +406,10 @@ def check_required_files() -> None:
         SKILL / "references" / "aesthetic-acceptance.md",
         SKILL / "references" / "copywriting-library.md",
         SKILL / "references" / "signature-lockup.md",
+        SKILL / "references" / "signature-layouts.md",
+        SKILL / "references" / "signature-design.md",
         SKILL / "scripts" / "brand_assets.py",
+        SKILL / "scripts" / "render_signature.py",
         SKILL / "scripts" / "palette_audit.py",
         ROOT / "scripts" / "build_co_brand_assets.py",
         ROOT / "docs" / "index.html",
@@ -392,6 +427,7 @@ def main() -> int:
         check_copywriting_knowledge,
         check_revision_freeze_policy,
         check_current_identity_assets,
+        check_signature_layouts,
         check_portability,
         check_required_files,
     ]

@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "sources": {
     "repository-config": {
       "origin": "Repository-maintained template configuration",
@@ -21,12 +21,12 @@
   },
   "files": {
     "default-config.json": {
-      "sha256": "26dbd4b871019117e978018fd14c37428cf55dfe4311e975a09940c8eeebbc55",
+      "sha256": "97f79f18f44e82100f058f24a211fb7adf19aea1d82382ba5e6854f677757814",
       "kind": "configuration",
       "source_id": "repository-config"
     },
     "preview.png": {
-      "sha256": "9ede22bd08a3ad4f4a5b130d68cb31408248a462c3f7452434e92782c808e6f4",
+      "sha256": "bf0b811851dde50e127c448afdc2e535b9617f20367b8ae02cdf97010be96527",
       "width": 2048,
       "height": 3072,
       "mode": "RGBA",

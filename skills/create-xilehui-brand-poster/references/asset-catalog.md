@@ -36,6 +36,10 @@ A01-A05 对应对话中确认的五类官方建筑。A06-A07 是同一 PPT 内�
 | `assets/identity/xmu-seal.png` | 独立圆形校徽 |
 | `assets/identity/som-triple-accreditation-lockup-color.png` | 管院三证合一透明横向标识 |
 | `assets/identity/mem25-anniversary-badge-color.png` | 25MEM 透明班徽 |
+| `assets/identity/xilehui-signature-horizontal-transparent.png` | 管院与25MEM横排，透明底，2400×352 |
+| `assets/identity/xilehui-signature-horizontal-cream.png` | 管院与25MEM横排，石灰米底，2400×352 |
+| `assets/identity/xilehui-signature-stacked-transparent.png` | 管院与25MEM叠排，透明底，1200×356 |
+| `assets/identity/xilehui-signature-stacked-cream.png` | 管院与25MEM叠排，石灰米底，1200×356 |
 
 校徽、组合标志、三证合一标识和25MEM班徽都属于完整身份标志。不得拆字、重排、拉伸、描边或让生图模型重建。只在用户明确要求时使用相应标识，不自动补齐其他 Logo；完整规则见 `signature-lockup.md`。校友会 Logo、其源图及含它的旧三方联合署名已从当前资产库撤下，不得从历史素材中恢复使用。
 
@@ -50,7 +54,7 @@ A01-A05 对应对话中确认的五类官方建筑。A06-A07 是同一 PPT 内�
 | `assets/identity/masters/xmu-wordmark-jiageng-official-vector.pdf` | PDF | 厦大官网嘉庚体“厦门大学”矢量校名字样 |
 | `assets/identity/masters/xmu-wordmark-luxun-official-vector.pdf` | PDF | 厦大官网鲁迅体“厦门大学”矢量校名字样 |
 
-母版只用于正式重新导出和核验，不直接嵌入网页或海报。日常屏幕稿继续使用透明 PNG；需要放大或交付印刷厂时使用官方 PDF。生产 PNG 由仓库根目录 `scripts/build_co_brand_assets.py` 从母版生成。
+母版只用于正式重新导出和核验，不直接嵌入网页或海报。日常屏幕稿继续使用透明 PNG；需要放大或交付印刷厂时使用官方 PDF。单体 PNG 由仓库根目录 `scripts/build_co_brand_assets.py` 从母版生成；四款现行署名由本 Skill 的 `scripts/render_signature.py` 从单体合成。使用与复现参数见 [signature-layouts.md](signature-layouts.md)。
 
 ## 来源与验真
 

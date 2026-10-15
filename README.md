@@ -83,6 +83,14 @@ python3 "${CODEX_HOME:-$HOME/.codex}/skills/.system/skill-installer/scripts/inst
 
 核心视觉生成可按任务调用 Codex 当前环境中的图像、画布或 Figma 能力；这些辅助能力不是仓库安装脚本的一部分。
 
+## 已确认的标识排版
+
+移除校友会 Logo 后，管院三证合一标识与25MEM班徽采用横排或叠排：横排用于宽幅页脚，叠排用于手机竖版。两种布局各提供透明底与石灰米底 PNG，以及可重复生成素材的脚本；只在当前物料明确要求相应标识时启用。
+
+顶部模板同步为两行正式名称居中、左右校徽与 With ME 标识等比缩小。完整参数、设计软件复现方法和高清预览见 [标识排版指南](skills/create-xilehui-brand-poster/references/signature-layouts.md)。
+
+![顶部与页脚排版应用示意](skills/create-xilehui-brand-poster/assets/examples/signature-layouts/application-comparison.png)
+
 ## 自动检查
 
 ```bash

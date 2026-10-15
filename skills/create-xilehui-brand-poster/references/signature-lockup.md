@@ -13,11 +13,20 @@
 | `assets/identity/som-triple-accreditation-lockup-color.png` | 管院三证合一透明横向标识 |
 | `assets/identity/mem25-anniversary-badge-color.png` | 25MEM 透明班徽 |
 
-`assets/identity/masters/` 保存对应 PSD／AI 母版，只用于重新导出和源文件核验。需要联合署名时在版面中使用上述两个独立资产，不调用旧三方组合。
+`assets/identity/masters/` 保存对应 PSD／AI 母版，只用于重新导出和源文件核验。明确要求联合署名时优先使用以下两种已确认布局，均只包含上述两个现行标识，不调用旧三方组合：
+
+| 文件 | 场景 |
+|---|---|
+| `assets/identity/xilehui-signature-horizontal-transparent.png` | 横排，低干扰浅底 |
+| `assets/identity/xilehui-signature-horizontal-cream.png` | 横排，深底通栏承托 |
+| `assets/identity/xilehui-signature-stacked-transparent.png` | 叠排，低干扰浅底 |
+| `assets/identity/xilehui-signature-stacked-cream.png` | 叠排，深底通栏承托 |
+
+横版、屏幕和宽幅页脚选横排；手机竖版和窄幅物料优先叠排。尺寸、复现脚本、设计软件操作与预览见 [signature-layouts.md](signature-layouts.md)。单个标识请求不使用组合 PNG。
 
 ## 固定关系与颜色例外
 
-- 两个标识都启用时，管院三证合一标识在左、25MEM班徽在右，组成同一视觉组。不得拆出认证图形、删字、重排标识内部内容、描边或用生成模型重建。
+- 两个标识都启用时，横排采用管院三证合一标识在左、25MEM班徽在右；叠排采用管院在上、班徽在下并居中，组成同一视觉组。不得拆出认证图形、删字、重排标识内部内容、描边或用生成模型重建。
 - 只允许等比缩放和整体移动。不得拉伸、透视、旋转、裁切标识主体或添加投影、发光与金属特效。
 - 已启用标识的原生色是品牌六色之外的受控例外，只存在于锁定 PNG 内部，不得抽取为画面装饰色，也不计入主视觉面积比例。
 - 不制作自定义单色版。深色信息型画面使用与正文、表格或内框同宽的通栏石灰米页脚承托区；不得把承托做成悬浮圆角 Logo 卡片。
@@ -33,4 +42,4 @@
 3. 管院名称、三项认证与班徽在各自启用时完整可辨，保持原色、比例、内部关系和安全空间；
 4. 深底承托完整，与主内容对齐，署名不抢主标题、价格、日期或报名入口。
 
-若明确要求的标识在小画布中不可辨识，先减少装饰、调整布局或增加画布尺寸，不把标识压成色块。
+若明确要求的标识在小画布中不可辨识，先改用叠排、减少装饰或增加画布尺寸，不把标识压成色块。手机小图检查整体识别与层级；认证细字和班徽环形细字需放大高清图逐字核对。

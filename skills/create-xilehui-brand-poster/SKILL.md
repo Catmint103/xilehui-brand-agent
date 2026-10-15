@@ -90,7 +90,7 @@ python scripts/brand_assets.py tint \
 
 ### 5. 按需建立署名区
 
-只有当前请求明确要求管院标识、25MEM班徽或联合署名时，才从 `assets/identity/` 选择相应单体资产。明确要求整组时，使用管院三证合一标识与25MEM班徽；不得补回已移除的校友会 Logo。旧浅底／深底三方组合已撤下，不再调用。
+只有当前请求明确要求管院标识、25MEM班徽或联合署名时，才从 `assets/identity/` 选择相应资产。只点名单个标识时用单体；明确要求整组时，用管院三证合一标识与25MEM班徽的已确认组合：横版与宽幅页脚用 `xilehui-signature-horizontal-*.png`，手机竖版与窄幅物料优先 `xilehui-signature-stacked-*.png`。透明／石灰米底选择、精确参数和确定性复现见 [references/signature-layouts.md](references/signature-layouts.md)。不得补回已移除的校友会 Logo 或旧三方组合。
 
 署名放在低于主要信息的独立区域，保持原色、比例和安全空间。深色信息型版面使用与主网格对齐的通栏石灰米承托区，不做悬浮圆角 Logo 卡片。未要求署名时不预留空位。在目标手机尺寸检查已启用标识的可辨识度，详见 `signature-lockup.md`。
 
@@ -150,5 +150,8 @@ python scripts/brand_assets.py tint \
 - `references/current-campaign.md`：当前第14届中秋喜乐会暨2026级迎新晚会已确认的活动全称、日期和主题口径。
 - `references/copywriting-library.md`：用户提供的推文与邀请函原文、来源哈希、适用场景和事实冲突处理规则。
 - `references/signature-lockup.md`：校友会 Logo 停用、其余机构标识按需启用，以及署名层级、留白和验收规则。
+- `references/signature-layouts.md`：确认后的横排、叠排及顶部身份栏参数，Canva／Figma 复现方法与应用预览。
+- `assets/examples/signature-layouts/`：两种署名排版、顶部身份栏及手机尺寸检查图；仅作布局示意。
 - `scripts/brand_assets.py`：列出、验真并转换标准线稿。
+- `scripts/render_signature.py`：从现行单体生成横排／叠排、透明／石灰米底的四款署名，不重绘标识。
 - `scripts/palette_audit.py`：审计成稿与主视觉色系的接近程度。
